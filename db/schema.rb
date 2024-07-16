@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_15_154952) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_16_101630) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_154952) do
     t.date "date"
     t.time "time"
     t.string "category"
-    t.string "age_group"
+    t.integer "age_group", default: 0
     t.decimal "price"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
