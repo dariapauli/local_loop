@@ -12,4 +12,13 @@
       <%= f.submit "Create!", class: "btn btn-primary" %>
       <% end %>
   </div>
+  <% if @event.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>
