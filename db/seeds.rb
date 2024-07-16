@@ -17,7 +17,7 @@ Event.create(
   date: Date.new(2024, 8, 1),
   time: Time.new(2024, 8, 1, 9, 0),
   category: "Technology",
-  age_group: "All Ages",
+  age_group: 6,
   price: 99.99,
   user_id: 1
 )
@@ -29,7 +29,7 @@ Event.create(
   date: Date.new(2024, 9, 15),
   time: Time.new(2024, 9, 15, 14, 0),
   category: "Entertainment",
-  age_group: "18+",
+  age_group: 6,
   price: 59.99,
   user_id: 1
 )
