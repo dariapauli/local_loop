@@ -1,0 +1,15 @@
+<div class="form-new p-5">
+  <h1>Create a new place to stay!</h1>
+
+  <div class="new-offer">
+    <%= simple_form_for @event, html: { multipart: true } do |f| %>
+      <%= f.input :name, { class: "label-dark" }%>
+      <%= f.input :address %>
+      <%= f.input :date %>
+      <%= f.input :time %>
+      <%= f.input :category %>
+      <%= f.input :price %>
+      <%= f.submit "Let's go!", class: "btn btn-primary" %>
+      <% end %>
+  </div>
+</div>
