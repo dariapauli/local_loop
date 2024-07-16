@@ -1,0 +1,12 @@
+<h1>Events</h1>
+
+<% @events.each do |event| %>
+    <h2><%= link_to event.name, event_path(event) %></h2>
+    <p>Description: <%= event.description %></p>
+    <p>Address: <%= event.address %></p>
+    <p>Date: <%= event.date %></p>
+    <p>Time: <%= event.time %></p>
+    <p>Category: <%= event.category %></p>
+    <p>Age Group: <%= event.age_group %></p>
+    <p>Price: <%= event.price %></p>
+<% end %>
