@@ -1,7 +1,12 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.all
+    # @events = Event.all
+
+    if params[:search][:postcode].present? && params[:search][:city].present?
+      @events = Event.where('address ILIKE ? AND address ILIKE ?', "%#{params[:search][:postcode]}%", "%#{params[:search][:city]}%")
+    end
+
     @markers = @events.geocoded.map do |event|
       {
         lat: event.latitude,
@@ -35,37 +40,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def search
-    @events = Event.all
-
-    if params[:street].present?
-      street_name, street_number = parse_street(params[:street])
-      @events = @events.where('street_name ILIKE ? AND street_number = ?', "%#{street_name}%", street_number)
-    end
-
-    if params[:city].present?
-      postcode, city_name = parse_city(params[:city])
-      @events = @events.where('postcode = ? AND city_name ILIKE ?', postcode, "%#{city_name}%")
-    end
-  end
-
   private
 
   def event_params
     params.require(:event).permit(:name, :description, :address, :age_group, :date, :time, :category, :price)
   end
 
-  def parse_street(street)
-    parts = street.split
-    street_number = parts.pop.to_i
-    street_name = parts.join(' ')
-    [street_name, street_number]
-  end
-
-  def parse_city(city)
-    parts = city.split
-    postcode = parts.shift.to_i
-    city_name = parts.join(' ')
-    [postcode, city_name]
-  end
 end
