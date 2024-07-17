@@ -324,11 +324,7 @@ DEPENDENCIES
   error_highlight (>= 0.4.0)
   font-awesome-sass (~> 6.1)
   geocoder
-<<<<<<< HEAD
-  importmap-rails
-=======
   importmap-rails (~> 1.2.3)
->>>>>>> b2a424ab59c4b842adbe40653845156f7c6b3869
   jbuilder
   pg (~> 1.1)
   puma (>= 5.0)
