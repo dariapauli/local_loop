@@ -13,7 +13,7 @@ user = User.create(email: 'example_user@example.com', password: 'password')
 Event.create(
   name: "Community Cleanup",
   description: "Community Cleanup is a nice thing",
-  address: "123 AI Street, Tech City",
+  address: "Torstraße 15, 1510405 Berlin",
   date: Date.new(2024, 8, 1),
   time: Time.new(2024, 8, 1, 9, 0),
   category: "Technology",
@@ -25,7 +25,7 @@ Event.create(
 Event.create(
   name: "Backyard Beats Concert",
   description: "A day full of live music performances.",
-  address: "456 Music Ave, Melody Town",
+  address: "Aachener Str. 340, 50933 Köln",
   date: Date.new(2024, 9, 15),
   time: Time.new(2024, 9, 15, 14, 0),
   category: "Entertainment",
