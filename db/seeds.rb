@@ -13,10 +13,10 @@ user = User.create(email: 'example_user@example.com', password: 'password')
 Event.create(
   name: "Community Cleanup",
   description: "Community Cleanup is a nice thing",
-  address: "123 AI Street, Tech City",
+  address: "Mainzer Landstraße, 60325 Frankfurt am Main",
   date: Date.new(2024, 8, 1),
   time: Time.new(2024, 8, 1, 9, 0),
-  category: "Technology",
+  category: "Film",
   age_group: 6,
   price: 99.99,
   user_id: 1
@@ -25,11 +25,11 @@ Event.create(
 Event.create(
   name: "Backyard Beats Concert",
   description: "A day full of live music performances.",
-  address: "456 Music Ave, Melody Town",
+  address: "Aachener Str. 340, 50933 Köln",
   date: Date.new(2024, 9, 15),
   time: Time.new(2024, 9, 15, 14, 0),
-  category: "Entertainment",
-  age_group: 6,
+  category: "Music",
+  age_group: 3,
   price: 59.99,
   user_id: 1
 )

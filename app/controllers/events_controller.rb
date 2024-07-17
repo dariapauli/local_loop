@@ -20,6 +20,17 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def participation
+    @event = Event.find(params[:id])
+    @user = current_user
+    @booking = Booking.new(user: @user, event: @event)
+    if @booking.save
+      redirect_to event_path(@event)
+    else
+      redirect_to event_path(@event), flash: {error: "Cannot save the booking!"}
+    end
+  end
+
   def create
     @event = Event.new(event_params)
     @event.user = current_user
@@ -38,11 +49,13 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @booking = Booking.find_by(event: @event, user: current_user)
   end
 
   private
 
   def event_params
+    params[:event][:age_group] = params[:event][:age_group].to_i
     params.require(:event).permit(:name, :description, :address, :age_group, :date, :time, :category, :price)
   end
 
