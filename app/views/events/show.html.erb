@@ -9,8 +9,11 @@
 <p>Price: <%= @event.price %></p>
 <p>Created by User ID: <%= @event.user_id %></p>
 
+<%= link_to "Participate", participation_event_path(@event), data: {turbo_method: 'post'} %>
+
  <% if @event.user == current_user %>
       <%= link_to "Delete",
       event_path(@event),
       data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class: "show-delete"%>
     <% end %>
+

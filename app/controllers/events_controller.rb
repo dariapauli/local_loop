@@ -15,6 +15,17 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def participation
+    @event = Event.find(params[:id])
+    @user = current_user
+    @booking = Booking.new(user: @user, event: @event)
+    if @booking.save
+      redirect_to event_path(@event)
+    else
+      redirect_to event_path(@event), flash: {error: "Cannot save the booking!"}
+    end
+  end
+
   def create
     @event = Event.new(event_params)
     @event.user = current_user

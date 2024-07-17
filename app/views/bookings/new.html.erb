@@ -1,0 +1,14 @@
+
+<!--
+
+<h1>New Booking for <%= @event.name %></h1>
+
+<%= form_with(model: [@event, @booking]) do |form| %>
+    <%= form.label :user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.label :event_id %>
+    <%= form.hidden_field :event_id, value: @event.id %>
+    <%= form.submit "Book Event" %>
+<% end %>
+
+->
