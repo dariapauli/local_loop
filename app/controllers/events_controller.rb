@@ -44,6 +44,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @booking = Booking.find_by(event: @event, user: current_user)
   end
 
   private
