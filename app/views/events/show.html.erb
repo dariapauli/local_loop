@@ -12,5 +12,5 @@
  <% if @event.user == current_user %>
       <%= link_to "Delete",
       event_path(@event),
-      data: {turbo_method: :delete, turbo_confirm: "This offer is horrible. Are you sure that you want to delete?"}, class: "show-delete"%>
+      data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class: "show-delete"%>
     <% end %>
