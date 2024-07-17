@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get "landhome", to: "menus#landhome"
 
-  resources :events, only: [:index, :new, :create, :show, :delete]
+  resources :events, only: [:index, :new, :create, :show, :destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
