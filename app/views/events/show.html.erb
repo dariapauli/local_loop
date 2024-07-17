@@ -5,8 +5,8 @@
 <p>Date: <%= @event.date %></p>
 <p>Time: <%= @event.time %></p>
 <p>Category: <%= @event.category %></p>
-<p>Age Group: <%= @event.age_group %></p>
-<p>Price: <%= @event.price %></p>
+<p>Age Group: <%= age_group_to_string(@event) %></p>
+<p>Price: <%= @event.price %>€</p>
 <p>Created by User ID: <%= @event.user_id %></p>
 
 <%= link_to "Participate", participation_event_path(@event), data: {turbo_method: 'post'} %>
@@ -16,4 +16,3 @@
       event_path(@event),
       data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class: "show-delete"%>
     <% end %>
-
