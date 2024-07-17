@@ -4,8 +4,10 @@
   <div class="new-offer">
     <%= simple_form_for @event, html: { multipart: true } do |f| %>
       <%= f.input :name, { class: "label-dark" }%>
-      <%= f.input :address %>
-      <%= f.input :date %>
+      <%= f.input :description %>
+      <%= f.input :address, presence: true, format: { with: /\A([^<>{}\\]|\s)+\z/, message: "Address can't be blank or contain special characters <>, {, }, or \" " } %>
+      <%= f.input :age_group %>
+      <%= f.input :date, as: :string, input_html: {data: {controller: "datepicker"}} %>
       <%= f.input :time %>
       <%= f.input :category %>
       <%= f.input :price %>
