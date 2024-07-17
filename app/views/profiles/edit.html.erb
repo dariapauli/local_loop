@@ -1,0 +1,6 @@
+<%= form_for @profile, url: profile_path(@profile) do |f| %>
+  <%= f.text_field :first_name %>
+  <%= f.text_field :last_name %>
+  <%# ... form fields for other profile attributes %>
+  <%= f.submit "Update Profile" %>
+<% end %>
