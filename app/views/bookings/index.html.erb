@@ -1,4 +1,4 @@
-<div class="bookings-index container">
+<div class="bookings-index">
   <h1>My Dashboard</h1>
   <h4>Hey <%= @user.first_name %>!</h4>
   <p>Looking for your events?</p>
@@ -11,13 +11,19 @@
       <% if current_user.events.any? %>
         <% @my_created_events.each do |event| %>
           <li>
-            <h3><%= link_to event.name, event_path(@event) %></h3>
+            <h3><%= link_to event.name, event_path(event) %></h3>
             <div>
               <% if event.photo.attached? %>
                 <%= cl_image_tag event.photo.key, class: "card-image", height: 110,  crop: :fill %>
               <% else %>
                 <%= image_tag "event.jpg", alt: "event-default", width: 200 %>
               <% end %>
+            </div>
+            <div>
+              <%= event.date %>
+            </div>
+            <div>
+              <%= event.time %>
             </div>
             <div>
               <%= event.description %>
