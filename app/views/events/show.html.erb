@@ -18,7 +18,7 @@
   <p>Price: <%= @event.price %>€</p>
   <p>Description: <%= @event.description %></p>
  <% if @event.user == current_user %>
-      <%= link_to "Delete",
+       <%= link_to "Delete",
       event_path(@event),
       data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class: "show-delete"%>
     <% end %>
@@ -58,3 +58,5 @@
 <% end %>
 
 <%= link_to "Back to search", search_events_path(@event)%>
+
+</div>

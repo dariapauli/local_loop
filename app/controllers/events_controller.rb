@@ -63,7 +63,8 @@ class EventsController < ApplicationController
 
   def show
     @booking = Booking.find_by(event: @event, user: current_user)
-
+    @bookings = @event.bookings
+    @participants = @event.users
   end
 
   private
