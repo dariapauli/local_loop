@@ -15,7 +15,7 @@
       <p>Date: <%= event.date %></p>
       <p>Time: <%= event.time %></p>
       <p>Category: <%= event.category %></p>
-      <p>Age Group: <%= event.age_group %></p>
+      <p>Age Group: <%= age_group_to_string(event) %></p>
       <p>Price: <%= event.price %></p>
   <% end %>
 <% else %>
