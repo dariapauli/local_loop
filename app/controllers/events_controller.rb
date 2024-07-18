@@ -56,7 +56,7 @@ class EventsController < ApplicationController
 
   def event_params
     params[:event][:age_group] = params[:event][:age_group].to_i
-    params.require(:event).permit(:name, :description, :address, :age_group, :date, :time, :category, :price)
+    params.require(:event).permit(:name, :description, :address, :age_group, :date, :time, :category, :price, :photo)
   end
 
 end
