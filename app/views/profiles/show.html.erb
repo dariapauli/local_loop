@@ -1,9 +1,42 @@
-<%# <% include application_helper %>
 
-<%# if user has profile name display, otherwise don't display %>
-<h2><%= @profile.username %></h2>
-<h3>
-  <%= @user.first_name %>
-  <%# condition for last name  %>
-  <%= format_name(last_name) %>
-</h3>
+<div class="container">
+  <div class="profile-header">
+     <% if current_user == @user %>
+      <h2>Your Profile</h2>
+    <% else %>
+      <h2><%= @user.first_name %>'s Profile</h2>
+    <% end %>
+  </div>
+
+  <div class="profile-username">
+    <% if @profile.username.present? %>
+      <h4><%= @profile.username %></h4>
+    <% end %>
+  </div>
+
+  <div class="profile-lastname">
+    <%= @user.first_name %>
+    <% if @profile.last_name.present? %>
+      <p><%= @profile.last_name[0] %>.</p>
+    <% end %>
+  </div>
+
+  <% if @profile.birthdate.present? %>
+    <% age = Time.now.year - @profile.birthdate.year - ((Time.now.month > @profile.birthdate.month || (Time.now.month == @profile.birthdate.month && Time.now.day >= @profile.birthdate.day)) ? 0 : 1) %>
+    <p>Age: <%= age %></p>
+  <% end %>
+
+  <% if @profile.bio.present? %>
+      <p>Bio: <%= @profile.bio %></p>
+  <% end %>
+
+  <% if @profile.interests.present? %>
+      <p>Interests: <%= @profile.interests %></p>
+  <% end %>
+
+  <% if @profile.city.present? %>
+      <p>📍 <%= @profile.city %></p>
+  <% end %>
+
+  <%# <%= cl_image_path @profile.photo.key %>
+</div>
