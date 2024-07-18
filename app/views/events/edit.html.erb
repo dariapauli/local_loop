@@ -1,0 +1,26 @@
+<h2>Do you need to make some changes to your event?</h2>
+
+  <div class="new-offer">
+    <%= simple_form_for @event, html: { multipart: true } do |f| %>
+      <%= f.input :name, { class: "label-dark" }%>
+      <%= f.input :description %>
+      <%= f.input :address, presence: true, format: { with: /\A([^<>{}\\]|\s)+\z/, message: "Address can't be blank or contain special characters <>, {, }, or \" " } %>
+      <%= f.input :age_group, collection: Event.age_groups.collect{|key, value| [key.to_s.titleize, value]}, as: :select, prompt: "Select an age group for your event" %>
+      <%= f.input :date, as: :string, input_html: {data: {controller: "datepicker"}} %>
+      <%= f.input :time %>
+      <%= f.input :category, collection: Event::CATEGORY, as: :select, prompt: "Select a category" %>
+      <%= f.input :price %>
+      <%= f.submit "Update", class: "btn btn-primary" %>
+      <% end %>
+  </div>
+
+  <% if @event.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
