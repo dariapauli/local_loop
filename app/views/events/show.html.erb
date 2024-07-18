@@ -1,26 +1,22 @@
-<div class="show">
-  <h1><%= @event.name %></h1>
-
-   <% if @event.photo && @event.photo.key %>
-    <div class="card-category"
-
-    style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @event.photo.key, class:"show-img" %>')"
->
-  Cool Event
+<div class="event-show">
+     <% if @event.photo && @event.photo.key %>
+      <div class="card-category"
+        style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+        url('<%= cl_image_path @event.photo.key, class:"show-img" %>')">
   </div>
   <% else %>
     <%= image_tag "event.jpg", alt: "train", width: 200 %>
   <% end %>
 
+  <h1><%= @event.name %></h1>
 
-  <p>Description: <%= @event.description %></p>
   <p>Address: <%= @event.address %></p>
   <p>Date: <%= @event.date %></p>
   <p>Time: <%= @event.time.strftime("%A, %B %d, %Y at %I:%M %p %Z") %></p>
   <p>Category: <%= @event.category %></p>
   <p>Age Group: <%= age_group_to_string(@event) %></p>
   <p>Price: <%= @event.price %>€</p>
-
+  <p>Description: <%= @event.description %></p>
  <% if @event.user == current_user %>
       <%= link_to "Delete",
       event_path(@event),
