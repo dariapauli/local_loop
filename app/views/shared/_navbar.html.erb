@@ -21,6 +21,7 @@
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
+
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= cl_image_tag @profile.photo.key, class: "avatar", alt: "dropdown menu" %>
           </a>
@@ -29,6 +30,7 @@
               <%= link_to "Edit Profile", edit_profile_path(@profile), class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
+
           </li>
         <% else %>
           <li class="nav-item">

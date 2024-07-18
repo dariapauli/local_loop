@@ -3,7 +3,7 @@
 
   <%= simple_form_for :search, url: events_path, method: :get, html: { class: 'search-form' } do |f| %>
     <div>
-      <%= f.input :postcode, placeholder: "Enter postcode (E.g. 70713)", input_html: { class: "form-control" } %>
+      <%= f.input :postcode, placeholder: "Enter postcode (E.g. 70713)", input_html: { class: "form-control", required: true } %>
     </div>
 
     <div>
