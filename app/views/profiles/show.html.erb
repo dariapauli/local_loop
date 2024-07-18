@@ -1,0 +1,9 @@
+<%# <% include application_helper %>
+
+<%# if user has profile name display, otherwise don't display %>
+<h2><%= @profile.username %></h2>
+<h3>
+  <%= @user.first_name %>
+  <%# condition for last name  %>
+  <%= format_name(last_name) %>
+</h3>
