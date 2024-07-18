@@ -1,12 +1,14 @@
 <div class="home">
-  <div class="home-up">
-    <h1>Local Loop</h1>
+  <div class="home-top">
     <div class="home-logo"></div>
   </div>
-  <div class="home-down">
+  <div class="home-middle">
     <div class="home-description">
-      Some Description about the app.
+      <h2>Stay in the Loop</h2>
+      <p>Some description about the app</p>
     </div>
-    <button class="btn btn-primary"><%= link_to "Lets Go!", landhome_path %></button>
+  </div>
+  <div class="home-bottom">
+    <button class="btn btn-primary"><%= link_to "Lets Go!", landhome_path, class: "home-link" %></button>
   </div>
 </div>
