@@ -1,11 +1,19 @@
 <div class="landhome">
-  <div class="landhome-title">
-    <h1>What do you want to do?</h1>
+  <div class="land-top">
+      <h1>What do you want to do?</h1>
   </div>
-  <div class="landhome-buttons">
-    <label>Looking for an event?</label>
-    <button><%= link_to "Search", search_events_path %></button>
-    <label>Planning to organize?</label>
-    <button><%= link_to "Create", new_event_path %></button>
+
+  <div class="land-middle">
+    <div class="landhome-buttons">
+      <label>Looking for an event?</label>
+      <button class="btn btn-primary"><%= link_to "Search", search_events_path, class: "land-link" %></button>
+      <label>Planning to organize?</label>
+      <button class="btn btn-primary"><%= link_to "Create", new_event_path, class: "land-link" %></button>
+    </div>
   </div>
+
+  <div class="land-bottom">
+    <p>Sign-in</p>
+  </div>
+
 </div>
