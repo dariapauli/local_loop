@@ -1,26 +1,35 @@
+<div class="show">
+  <h1><%= @event.name %></h1>
 
-<h1><%= @event.name %></h1>
-
-<p>Description: <%= @event.description %></p>
-<p>Address: <%= @event.address %></p>
-<p>Date: <%= @event.date %></p>
-<p>Time: <%= @event.time %></p>
-<p>Category: <%= @event.category %></p>
-<p>Age Group: <%= age_group_to_string(@event) %></p>
-<p>Price: <%= @event.price %>€</p>
-<p>Created by User ID: <%= @event.user_id %></p>
-
-
+  <div class="card-category"
+    style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @event.photo.key, crop: :fill %>')"
+>
+  Cool Event
+  </div>
+  <p>Description: <%= @event.description %></p>
+  <p>Address: <%= @event.address %></p>
+  <p>Date: <%= @event.date %></p>
+  <p>Time: <%= @event.time %></p>
+  <p>Category: <%= @event.category %></p>
+  <p>Age Group: <%= age_group_to_string(@event) %></p>
+  <p>Price: <%= @event.price %>€</p>
+  <p>Created by User ID: <%= @event.user_id %></p>
 
  <% if @event.user == current_user %>
       <%= link_to "Delete",
       event_path(@event),
       data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class: "show-delete"%>
     <% end %>
+  <% if @booking.nil? %>
+    <% disabled = "" %>
+    <% else %>
+    <% disabled = "disabled" %>
+  <% end %>
 
-<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"  disabled="<%= !@booking.nil?%>">
+<button type="button" class="btn btn-dark" <%= disabled %> data-bs-toggle="modal" data-bs-target="#exampleModal">
   <%= link_to "Participate", participation_event_path(@event), data: {turbo_method: 'post'} %>
 </button>
+</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

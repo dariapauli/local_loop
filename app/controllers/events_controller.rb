@@ -1,7 +1,12 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.all
+    # @events = Event.all
+
+    if params[:search][:postcode].present? && params[:search][:city].present?
+      @events = Event.where('address ILIKE ? AND address ILIKE ?', "%#{params[:search][:postcode]}%", "%#{params[:search][:city]}%")
+    end
+
     @markers = @events.geocoded.map do |event|
       {
         lat: event.latitude,
@@ -45,12 +50,14 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @booking = Booking.find_by(event: @event, user: current_user)
+
   end
 
   private
 
   def event_params
     params[:event][:age_group] = params[:event][:age_group].to_i
-    params.require(:event).permit(:name, :description, :address, :age_group, :date, :time, :category, :price)
+    params.require(:event).permit(:name, :description, :address, :age_group, :date, :time, :category, :price, :photo)
   end
+
 end
