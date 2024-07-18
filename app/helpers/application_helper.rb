@@ -5,7 +5,7 @@ module ApplicationHelper
 
   def format_name(name)
     # Matches one or more word characters followed by whitespace and any characters
-    match = name.match(/(\w+)\s+(.+)/)
+    match = name.match(/(\w+)/)
     return name unless match # Return original name if no match
 
     # Access captured groups (first and last name)
