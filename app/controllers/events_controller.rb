@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: %i[participation edit show destroy]
 
   def index
     # @events = Event.all
-
     if params[:search][:postcode].present? && params[:search][:city].present?
       @events = Event.where('address ILIKE ? AND address ILIKE ?', "%#{params[:search][:postcode]}%", "%#{params[:search][:city]}%")
     end
@@ -21,7 +21,6 @@ class EventsController < ApplicationController
   end
 
   def participation
-    @event = Event.find(params[:id])
     @user = current_user
     @booking = Booking.new(user: @user, event: @event)
     if @booking.save
@@ -41,18 +40,32 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @event.update(event_params)
+    if @event.save
+      redirect_to event_path(@event)
+    else
+      render :edit
+    end
+  end
+
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
     redirect_to events_path, status: :see_other
   end
 
   def show
-    @event = Event.find(params[:id])
     @booking = Booking.find_by(event: @event, user: current_user)
   end
 
   private
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
   def event_params
     params[:event][:age_group] = params[:event][:age_group].to_i

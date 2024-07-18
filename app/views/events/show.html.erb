@@ -18,6 +18,11 @@
       data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class: "show-delete"%>
     <% end %>
 
+<% if @event.user == current_user %>
+      <%= link_to "Edit",
+      edit_event_path(@event), class: "show-edit"%>
+<% end %>
+
 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
   <%= link_to "Participate", participation_event_path(@event), data: {turbo_method: 'post'} %>
 </button>
