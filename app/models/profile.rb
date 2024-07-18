@@ -1,8 +1,8 @@
 class Profile < ApplicationRecord
   belongs_to :user
+  
+  GENDER = %w[Female Male Nonbinary Other]
 
-  validates :username, presence: true, uniqueness: true
-  validates :postcode, presence: true
-  validates :city, presence: true
-  validates :user_id, presence: true
+  has_one_attached :photo
+
 end

@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_one :profile, dependent: :destroy
+  validates :first_name, presence: true
+  accepts_nested_attributes_for :profile
 
   after_create :build_profile
 
