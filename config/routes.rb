@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users do
-    resources :profiles
-  end
+  devise_for :users 
   root to: "pages#home"
 
   get "landhome", to: "menus#landhome"
