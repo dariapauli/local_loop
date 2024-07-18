@@ -1,0 +1,83 @@
+<div class="bookings-index">
+  <h1>My Dashboard</h1>
+  <h4>Hey <%= @user.first_name %>!</h4>
+  <p>Looking for your events?</p>
+
+  <%# !!!! SEARCH BAR HERE? !!!! %>
+
+  <div class="dashboard-container">
+    <div class="column active" id="created-events">
+      <h4>Created Events</h4>
+      <ul>
+        <% if current_user.events.any? %>
+          <% @my_created_events.each do |event| %>
+            <div class="event-container">
+              <li class="list-event">
+                <h3 class="title-event"><%= link_to event.name, event_path(event), class: "dashboard-custom-link" %></h3>
+                <div class="dash-pic">
+                  <% if event.photo.attached? %>
+                    <%= cl_image_tag event.photo.key, class: "card-image", height: 110,  crop: :fill %>
+                  <% else %>
+                    <%= image_tag "event.jpg", alt: "event-default", width: 200 %>
+                  <% end %>
+                </div>
+                <div>
+                  <%= event.date %>
+                </div>
+                <div>
+                  <%= event.time %>
+                </div>
+                <div>
+                  <%= event.description %>
+                </div>
+              </li>
+            </div>
+          <% end %>
+        <% else %>
+          <p>Nothing to organize</p>
+          <button class="btn btn-primary">
+            <%= link_to "Create Event", new_event_path %>
+          </button>
+
+          <%# !!!!!SHOW PAST EVENTS?!!!!!! %>
+
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="column" id="booked-events">
+      <h4>Participating</h4>
+      <ul>
+        <% if @my_participations.any? %>
+          <% @my_participations.each do |event| %>
+            <li class="list-event">
+              <h3 class="title.event"><%= link_to event.name, event_path(event), class: "dashboard-custom-link" %></h3>
+              <div class="dash-pic">
+                <% if event.photo.attached? %>
+                  <%= cl_image_tag event.photo.key, class: "card-image", height: 110,  crop: :fill %>
+                <% else %>
+                  <%= image_tag "event.jpg", alt: "event-default", width: 200 %>
+                <% end %>
+              </div>
+              <div>
+                <%= date_to_string(event.date) %>
+              </div>
+              <div>
+                <%= event.time %>
+              </div>
+              <div>
+                <%= event.description %>
+              </div>
+            </li>
+          <% end %>
+        <% else %>
+          <p>You have no upcoming events</p>
+          <button class="btn btn-primary">
+            <%= link_to "Search events", search_events_path %>
+          </button>
+          <%# !!! SHOW PAST EVENTS? !!!!! %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
