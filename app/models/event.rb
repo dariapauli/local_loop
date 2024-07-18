@@ -10,7 +10,6 @@ class Event < ApplicationRecord
   # validates :description, presence: true, length: { maximum: 200 }
   validates :time, presence: true
   # validates :price, numericality: { greater_than: 0.00, message: "Price cannot be lesser than 0" }
-  validates :postcode, presence: true
   CATEGORY = %w[Music Comedy Food Drinks Market Help Lesson Party Gardening Literature Sports Pets Religion Film Babies Housesitting Weird Other]
 
   geocoded_by :address
