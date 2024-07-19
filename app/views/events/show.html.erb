@@ -58,5 +58,11 @@
 <% end %>
 
 <%= link_to "Back to search", search_events_path(@event)%>
-
+  <div class="comments">
+    <h1>Comment</h1>
+      <%= simple_form_for [@event, @comment] do |f| %>
+      <%= f.input :content %>
+      <%= f.submit "Send", class: "btn btn-primary" %>
+  <% end %>
+</div>
 </div>

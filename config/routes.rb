@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :events, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:create]
     collection do
       get 'search'
     end
