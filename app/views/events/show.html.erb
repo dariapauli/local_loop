@@ -34,7 +34,7 @@
 <% end %>
 
 <% if @event.user != current_user %>
-  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" <%= disabled %>>
   <%= link_to "Participate", participation_event_path(@event), data: {turbo_method: 'post'} %>
   </button>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
