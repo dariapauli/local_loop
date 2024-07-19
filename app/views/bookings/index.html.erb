@@ -27,10 +27,12 @@
                       <% end %>
                     </div>
                     <div>
-                      <%= event.date %>
+                      <% if event.date.present? %>
+                        <%= event.date.strftime("%A, %B %d, %Y") %>
+                      <% end %>
                     </div>
                     <div>
-                      <%= event.time %>
+                      <%= event.time.strftime("%I:%M %p") %>
                     </div>
                     <div>
                       <%= event.description %>
@@ -67,10 +69,10 @@
                       <% end %>
                     </div>
                     <div>
-                      <%= date_to_string(event.date) %>
+                      <%= event.date.strftime("%A, %B %d, %Y") %>
                     </div>
                     <div>
-                      <%= event.time %>
+                      <%= event.time.strftime("%I:%M %p")  %>
                     </div>
                     <div>
                       <%= event.description %>
