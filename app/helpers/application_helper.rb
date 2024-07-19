@@ -14,4 +14,8 @@ module ApplicationHelper
     # Rebuild the name with first name and initial of last name
     "#{last_name[0]}."
   end
+
+  def date_to_string(date)
+    date.to_s.gsub("_", " ")
+  end
 end

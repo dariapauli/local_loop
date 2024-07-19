@@ -1,0 +1,49 @@
+.dashboard-container {
+  display: flex;
+}
+
+.column.active h4 {
+  color: #1B475D;
+  font-weight: 800;
+}
+
+.column.inactive h4 {
+  color: #1b475d47;
+  font-weight: 800;
+}
+
+.bookings-index h1 {
+  color: #1B475D;
+  font-weight: 800;
+}
+
+.bookings-index h4 {
+  color:#1B475D;
+}
+
+.title-event {
+  font-style: bold;
+  color: #1B475D;
+}
+
+.list-event {
+  list-style: none;
+}
+
+body {
+  background-color: #fffbee;
+}
+
+.event-container {
+  border: 2px solid red;
+}
+
+.dashboard-custom-link {
+  text-decoration: none;
+  color: inherit;
+  font-weight:800;
+
+  &:hover {
+    color: #8EBD9D;
+  }
+}
