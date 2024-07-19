@@ -27,13 +27,17 @@
                       <% end %>
                     </div>
                     <div>
-                      <%= event.date %>
+                      <% if event.date.present? %>
+                        <%= event.date.strftime("%A, %B %d, %Y") %>
+                      <% end %>
                     </div>
                     <div>
-                      <%= event.time %>
+                      <%= event.time.strftime("%I:%M %p") %>
                     </div>
                     <div>
-                      <%= event.description %>
+                      <% if event.address.present? %>
+                        <%= event.address %>
+                      <% end %>
                     </div>
                   </li>
                 </div>
@@ -67,13 +71,22 @@
                       <% end %>
                     </div>
                     <div>
-                      <%= date_to_string(event.date) %>
+                      <%= event.date.strftime("%A, %B %d, %Y") %>
                     </div>
                     <div>
-                      <%= event.time %>
+                      <%= event.time.strftime("%I:%M %p")  %>
                     </div>
                     <div>
-                      <%= event.description %>
+                      <% if event.address.present? %>
+                        <%= event.address %>
+                      <% end %>
+                    </div>
+                    <div>
+                      <% if event.price == 0 %>
+                        <p>Free</p>
+                      <% else %>
+                        <%= number_to_currency(event.price, unit: "€") %>
+                      <% end %>
                     </div>
                   </li>
                 </div>

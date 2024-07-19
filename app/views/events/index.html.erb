@@ -12,11 +12,20 @@
       <h2><%= link_to event.name, event_path(event) %></h2>
       <p>Description: <%= event.description %></p>
       <p>Address: <%= event.address %></p>
-      <p>Date: <%= event.date %></p>
-      <p>Time: <%= event.time %></p>
+      <% if event.date.present? %>
+        <p>Date: <%= event.date.strftime("%A, %B %d, %Y") %></p>
+      <% end %>
+      <% if event.time.present? %>
+        <p>Time: <%= event.time.strftime("%I:%M %p") %></p>
+      <% end %>
       <p>Category: <%= event.category %></p>
       <p>Age Group: <%= age_group_to_string(event) %></p>
-      <p>Price: <%= event.price %></p>
+      <% if event.price == 0 %>
+        <p>Price: Free</p>
+      <% else %>
+        <%= number_to_currency(event.price, unit: "€") %>
+      <% end %>
+      <%# <p>Price: <%= event.price %>
   <% end %>
 <% else %>
 <p>There is no event in this city</p>

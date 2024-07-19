@@ -11,11 +11,15 @@
   <h1><%= @event.name %></h1>
 
   <p>Address: <%= @event.address %></p>
-  <p>Date: <%= @event.date %></p>
-  <p>Time: <%= @event.time.strftime("%A, %B %d, %Y at %I:%M %p %Z") %></p>
+  <p>Date: <%= @event.date.strftime("%A, %B %d, %Y") %></p>
+  <p>Time: <%= @event.time.strftime("%I:%M %p") %></p>
   <p>Category: <%= @event.category %></p>
   <p>Age Group: <%= age_group_to_string(@event) %></p>
-  <p>Price: <%= @event.price %>€</p>
+  <% if event.price == 0 %>
+        <p>Price: Free</p>
+      <% else %>
+        <%= number_to_currency(event.price, unit: "€") %>
+  <% end %>
   <p>Description: <%= @event.description %></p>
  <% if @event.user == current_user %>
        <%= link_to "Delete",
