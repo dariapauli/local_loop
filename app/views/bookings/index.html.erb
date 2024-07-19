@@ -77,6 +77,13 @@
                     <div>
                       <%= event.description %>
                     </div>
+                    <div>
+                      <% if event.price == 0 %>
+                        <p>Free</p>
+                      <% else %>
+                        <%= number_to_currency(event.price, unit: "€") %>
+                      <% end %>
+                    </div>
                   </li>
                 </div>
               <% end %>
