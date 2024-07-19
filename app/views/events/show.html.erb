@@ -65,4 +65,12 @@
       <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>
 </div>
+<div class="comments-view">
+  <ul>
+    <% @comments.each do |c| %>
+    <li><%= c.content %></li>
+    <% end %>
+  </ul>
+
+</div>
 </div>

@@ -65,8 +65,9 @@ class EventsController < ApplicationController
     @booking = Booking.find_by(event: @event, user: current_user)
     @bookings = @event.bookings
     @participants = @event.users
-    @comment = Comment.new
     @comments = @event.comments
+    @comment = Comment.new
+
   end
 
   private
