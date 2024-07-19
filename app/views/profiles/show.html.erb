@@ -1,8 +1,12 @@
 
 <div class="container">
-  <button>
+
+  <% if @profile.user == @user %>
+    <button>
     <%= link_to "Edit your profile", edit_profile_path(@profile) %>
-  </button>
+    </button>
+  <% end  %>
+
   <div class="profile-header">
      <% if current_user == @user %>
       <h2>Your Profile</h2>
