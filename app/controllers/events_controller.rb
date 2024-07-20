@@ -6,18 +6,18 @@ class EventsController < ApplicationController
 
     if params[:search][:postcode].present? # && params[:search][:city].present?
       @events = Event.where('address ILIKE ? OR address ILIKE ?', "%#{params[:search][:postcode]}%", "%#{params[:search][:city]}%")
+      @markers = @events.geocoded.map do |event|
+        {
+          lat: event.latitude,
+          lng: event.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {event: event})
+        }
+      end
     elsif params[:postcode].blank?
       flash[:alert] = "Postcode is required"
       redirect_to search_events_path and return
     end
 
-    @markers = @events.geocoded.map do |event|
-      {
-        lat: event.latitude,
-        lng: event.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {event: event})
-      }
-    end
   end
 
   def new
