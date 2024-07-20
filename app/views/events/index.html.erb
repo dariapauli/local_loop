@@ -7,25 +7,49 @@
 
 <h1>Events</h1>
 
+<div class="row">
+  <div class="headers-fixed">
+    <h3 class="text-info">Filter By:</h3>
+  </div>
+  <div class="dropdown-filters d-flex flex-row justify-content-around" data-controller="filters">
+    <div>
+      <select name="category" id="category" class="border-0 bg-transparent text-info" data-filters-target="selectCategory"></select>
+      <label for="category">Category</label>
+    </div>
+    <div>
+      <select name="age-group" id="age-group" class="border-0 bg-transparent text-info" data-filters-target="selectAgeGroup"></select>
+      <label for="age-group">Age Group</label>
+    </div>
+    <div>
+      <select name="price" id="price" class="border-0 bg-transparent text-info" data-filters-target="selectPrice"></select>
+      <label for="price">Price</label>
+    </div>
+    <div>
+      <select name="date" id="date" class="border-0 bg-transparent text-info" data-filters-target="selectDate"></select>
+      <label for="Date">Date</label>
+    </div>
+  </div>
+</div>
+
 <% if @events.present? %>
   <% @events.each do |event| %>
-      <h2><%= link_to event.name, event_path(event) %></h2>
-      <p>Description: <%= event.description %></p>
-      <p>Address: <%= event.address %></p>
-      <% if event.date.present? %>
-        <p>Date: <%= event.date.strftime("%A, %B %d, %Y") %></p>
-      <% end %>
-      <% if event.time.present? %>
-        <p>Time: <%= event.time.strftime("%I:%M %p") %></p>
-      <% end %>
-      <p>Category: <%= event.category %></p>
-      <p>Age Group: <%= age_group_to_string(event) %></p>
-      <% if event.price == 0 %>
-        <p>Price: Free</p>
-      <% else %>
-        <%= number_to_currency(event.price, unit: "€") %>
-      <% end %>
+    <h2><%= link_to event.name, event_path(event) %></h2>
+    <p>Description: <%= event.description %></p>
+    <p>Address: <%= event.address %></p>
+    <% if event.date.present? %>
+      <p>Date: <%= event.date.strftime("%A, %B %d, %Y") %></p>
+    <% end %>
+    <% if event.time.present? %>
+      <p>Time: <%= event.time.strftime("%I:%M %p") %></p>
+    <% end %>
+    <p>Category: <%= event.category %></p>
+    <p>Age Group: <%= age_group_to_string(event) %></p>
+    <% if event.price == 0 %>
+      <p>Free</p>
+    <% else %>
+      <p>Price: <%= number_to_currency(event.price, unit: "€") %></p>
+    <% end %>
   <% end %>
 <% else %>
-<p>There is no event in this city</p>
+  <p>There is no event in this city</p>
 <% end  %>
