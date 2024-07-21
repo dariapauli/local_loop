@@ -3,28 +3,31 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static targets = [
-    selectCategory
-    selectAgeGroup
-    selectPrice
-    selectDate
+    "selectCategory",
+    "selectAgeGroup",
+    "selectPrice",
+    "showEvents"
   ]
   connect() {
-    console.log("Filters controller succesfully connected")
+    this.form = this.element.querySelector("form");
+    this.form.addEventListener("change")
   }
 
-  def filterCategory(event) {
-
+  changeForm(event){
+    event.preventDefault();
+    this.form.requestSubmit();
   }
 
-  def filterAgeGroup(event) {
-
+  filterCategory(event) {
+    this.showEvents.target
   }
 
-  def filterPrice(event) {
-
+  filterAgeGroup(event) {
+    console.log("miau")
   }
 
-  def filterDate(event) {
-
+  filterPrice(event) {
+    console.log("woof")
   }
+
 }

@@ -7,43 +7,78 @@
 
 <h1>Events</h1>
 
-<div class="row">
-  <div class="headers-fixed">
+<div>
+  <div class="header-fixed">
     <h3 class="text-info">Filter By:</h3>
-  </div>
-  <div class="dropdown-filters d-flex flex-row justify-content-around" data-controller="filters">
-    <div>
-      <%= select_tag :category, options_for_select(Event::CATEGORY), prompt: "Category", class: "border-0 bg-transparent" %>
-    </div>
-    <div>
-      <%= select_tag :age_group, options_for_select(Event.age_groups.collect{|key, value| [key.to_s.titleize, value]}), prompt: "Age Group", class: "border-0 bg-transparent" %>
-    </div>
-    <div>
-      <% price_options = { 0.00 => "Free", (1.0..10.0) => proc { |price| "%.2f€" % price }, (11.0..20.0) => proc { |price| "%.2f" % price }, (21.0..30.0) => proc { |price| "%.2f" % price }, (31.0..40.0) => proc { |price| "%.2f" % price }, (41.0..50.0) => proc { |price| "%.2f" % price } } %>
-      <%= select_tag :price, options_for_select(price_options), prompt: "Price", class: "border-0 bg-transparent" %>
-    </div>
-  </div>
+  </div class="dropdown-filters d-flex flex-row justify-content-around">
+    <%= form_with(url: events_path, method: :get,
+                  data: {
+                    turbo_frame: "filter_results",
+                    turbo_action: "advance",
+                    controller: "filters",
+                    action: "change->filters#submit"
+                  }) do |form| %>
+      <div>
+        <%= form.select :category, Event::CATEGORY, prompt: "Category", class: "border-0 bg-transparent" %>
+      </div>
+      <div>
+        <%= form.select :age_group, Event.age_groups.collect{|key, value| [key.to_s.titleize, value]}, prompt: "Age Group", class: "border-0 bg-transparent" %>
+      </div>
+      <div>
+        <%# <%= form.select :price, prompt: "Price" %>
+      </div>
+    <% end %>
 </div>
 
-<% if @events.present? %>
-  <% @events.each do |event| %>
-    <h2><%= link_to event.name, event_path(event) %></h2>
-    <p>Description: <%= event.description %></p>
-    <p>Address: <%= event.address %></p>
-    <% if event.date.present? %>
-      <p>Date: <%= event.date.strftime("%A, %B %d, %Y") %></p>
-    <% end %>
-    <% if event.time.present? %>
-      <p>Time: <%= event.time.strftime("%I:%M %p") %></p>
-    <% end %>
-    <p>Category: <%= event.category %></p>
-    <p>Age Group: <%= age_group_to_string(event) %></p>
-    <% if event.price == 0 %>
-      <p>Free</p>
-    <% else %>
-      <p>Price: <%= number_to_currency(event.price, unit: "€") %></p>
-    <% end %>
+<div>
+  <% turbo_frame_tag "filter_results" do %>
+    <p><%= @events.count %> events found </p>
+    <div class="events">
+      <% @events.each do |event| %>
+        <h2><%= link_to event.name, event_path(event) %></h2>
+        <p>Description: <%= event.description %></p>
+        <p>Address: <%= event.address %></p>
+        <% if event.date.present? %>
+          <p>Date: <%= event.date.strftime("%A, %B %d, %Y") %></p>
+        <% end %>
+        <% if event.time.present? %>
+          <p>Time: <%= event.time.strftime("%I:%M %p") %></p>
+        <% end %>
+        <p>Category: <%= event.category %></p>
+        <p>Age Group: <%= age_group_to_string(event) %></p>
+        <% if event.price == 0 %>
+          <p>Free</p>
+        <% else %>
+          <p>Price: <%= number_to_currency(event.price, unit: "€") %></p>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
-<% else %>
-  <p>There is no event in this city</p>
-<% end  %>
+</div>
+
+<div data-filter-target="showEvents">
+  <% if @events.present? %>
+    <div>
+      <% @events.each do |event| %>
+        <h2><%= link_to event.name, event_path(event) %></h2>
+        <p>Description: <%= event.description %></p>
+        <p>Address: <%= event.address %></p>
+        <% if event.date.present? %>
+          <p>Date: <%= event.date.strftime("%A, %B %d, %Y") %></p>
+        <% end %>
+        <% if event.time.present? %>
+          <p>Time: <%= event.time.strftime("%I:%M %p") %></p>
+        <% end %>
+        <p>Category: <%= event.category %></p>
+        <p>Age Group: <%= age_group_to_string(event) %></p>
+        <% if event.price == 0 %>
+          <p>Free</p>
+        <% else %>
+          <p>Price: <%= number_to_currency(event.price, unit: "€") %></p>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>There is no event in this city</p>
+  <% end  %>
+</div>

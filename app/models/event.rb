@@ -16,11 +16,7 @@ class Event < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  def events_by_category(category)
-    if category.nil?
-      all
-    else
-      where("category = ?", category)
-    end
-  end
+  scope :with_category, ->(category) { where(:category) if category.present? }
+  scope :with_age_group, ->(age_group) { where(:age_group) if age_group.present? }
+  # scope :with_price, ->(price) { where(:price) if price.present? }
 end

@@ -18,6 +18,22 @@ class EventsController < ApplicationController
       redirect_to search_events_path and return
     end
 
+    @category = Event.pluck(:category)
+    @age_group = Event.pluck(:age_group)
+    @price = Event.pluck(:price)
+
+    if params[:category].present?
+      @events = Event.with_category(params[:category])
+    end
+
+    if params[:age_group].present?
+      @events = Event.with_age_group(params[:age_group])
+    end
+
+    # if params[:price].present?
+    #   @events = Event.with_price(params[:price])
+    # end
+
     # selected_price = params[:price]
 
     # if selected_price == "Free"
