@@ -5,26 +5,30 @@
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 
-<h1>Events</h1>
-
 <% if @events.present? %>
   <% @events.each do |event| %>
-      <h2><%= link_to event.name, event_path(event) %></h2>
-      <p>Description: <%= event.description %></p>
-      <p>Address: <%= event.address %></p>
+    <div class="event-cards">
+      <h2><%= link_to event.name, event_path(event), class: "link-underline-opacity-0" %></h2>
+      <p><%= event.description %></p>
+      <i class="fa-solid fa-location-dot"></i> <%= event.address %>
       <% if event.date.present? %>
-        <p>Date: <%= event.date.strftime("%A, %B %d, %Y") %></p>
+        <i class="fa-regular fa-calendar-days"></i> <%= event.date.strftime("%A, %B %d, %Y") %>
       <% end %>
       <% if event.time.present? %>
-        <p>Time: <%= event.time.strftime("%I:%M %p") %></p>
+        <p><i class="fa-regular fa-clock"></i> <%= event.time.strftime("%I:%M %p") %></p>
       <% end %>
       <p>Category: <%= event.category %></p>
-      <p>Age Group: <%= age_group_to_string(event) %></p>
-      <% if event.price == 0 %>
-        <p>Price: Free</p>
-      <% else %>
-        <%= number_to_currency(event.price, unit: "€") %>
-      <% end %>
+      <%= age_group_to_string(event) %>
+      <div class="price-box">
+        <% if event.price == 0 %>
+          <p class="blue-price">Free</p>
+        <% else %>
+          <p class="beige-price">
+            <%= number_to_currency(event.price, unit: "€") %>
+          </p>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 <% else %>
 <p>There is no event in this city</p>
