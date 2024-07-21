@@ -18,15 +18,14 @@ class EventsController < ApplicationController
       redirect_to search_events_path and return
     end
 
-    # if category is selected
-    # @events = Events.by_category
-    # if age_group is selected
-    # @events = Events.by_age_group
-    # if price is selected
-    # @events = Events.by_price
-    # if date is selected
-    # @events = Events.by_date
-    # if all filters are selected, display @events = Events.by_category.by_age_group.by_price.by_date
+    # selected_price = params[:price]
+
+    # if selected_price == "Free"
+    #   @events = Event.where(price: 0.00)
+    # else
+    #   price = selected_price.to_f
+    #   @events = Event.where("price > ?", price)
+    # end
   end
 
   def new

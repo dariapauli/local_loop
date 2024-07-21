@@ -13,20 +13,14 @@
   </div>
   <div class="dropdown-filters d-flex flex-row justify-content-around" data-controller="filters">
     <div>
-      <select name="category" id="category" class="border-0 bg-transparent text-info" data-filters-target="selectCategory"></select>
-      <label for="category">Category</label>
+      <%= select_tag :category, options_for_select(Event::CATEGORY), prompt: "Category", class: "border-0 bg-transparent" %>
     </div>
     <div>
-      <select name="age-group" id="age-group" class="border-0 bg-transparent text-info" data-filters-target="selectAgeGroup"></select>
-      <label for="age-group">Age Group</label>
+      <%= select_tag :age_group, options_for_select(Event.age_groups.collect{|key, value| [key.to_s.titleize, value]}), prompt: "Age Group", class: "border-0 bg-transparent" %>
     </div>
     <div>
-      <select name="price" id="price" class="border-0 bg-transparent text-info" data-filters-target="selectPrice"></select>
-      <label for="price">Price</label>
-    </div>
-    <div>
-      <select name="date" id="date" class="border-0 bg-transparent text-info" data-filters-target="selectDate"></select>
-      <label for="Date">Date</label>
+      <% price_options = { 0.00 => "Free", (1.0..10.0) => proc { |price| "%.2f€" % price }, (11.0..20.0) => proc { |price| "%.2f" % price }, (21.0..30.0) => proc { |price| "%.2f" % price }, (31.0..40.0) => proc { |price| "%.2f" % price }, (41.0..50.0) => proc { |price| "%.2f" % price } } %>
+      <%= select_tag :price, options_for_select(price_options), prompt: "Price", class: "border-0 bg-transparent" %>
     </div>
   </div>
 </div>
