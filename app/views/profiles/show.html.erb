@@ -1,56 +1,75 @@
 
+<div class="container profile-father">
 <div class="container">
+  <div class="second-container">
+    <% if @profile.user == @user %>
+      <button>
+        <%= link_to "Edit your profile", edit_profile_path(@profile) %>
+      </button>
+    <% end  %>
 
-  <% if @profile.user == @user %>
-    <button>
-    <%= link_to "Edit your profile", edit_profile_path(@profile) %>
-    </button>
-  <% end  %>
+    <div class="profile-header">
+      <% if current_user == @user %>
+        <h2>Your Profile</h2>
+      <% else %>
+        <h2><%= @user.first_name %>'s Profile</h2>
+      <% end %>
+    </div>
 
-  <div class="profile-header">
-     <% if current_user == @user %>
-      <h2>Your Profile</h2>
-    <% else %>
-      <h2><%= @user.first_name %>'s Profile</h2>
+    <div class="profile-username">
+      <% if @profile.username.present? %>
+        <h4><%= @profile.username %></h4>
+      <% end %>
+    </div>
+
+    <div class="profile-picture-round">
+      <% if @profile.photo.present? %>
+        <%= cl_image_tag @profile.photo.key, class:"profile-pic" %>
+      <% else %>
+        <%= image_tag "Default_pfp.jpg", alt: "Default Profile Picture", class:"profile-pic" %>
+      <% end %>
+    </div>
+
+    <div class="profile-lastname">
+      <%= @user.first_name %>
+      <% if @profile.last_name.present? %>
+        <p><%= @profile.last_name[0] %>.</p>
+      <% end %>
+    </div>
+
+    <% if @profile.birthdate.present? %>
+      <% age = Time.now.year - @profile.birthdate.year - ((Time.now.month > @profile.birthdate.month || (Time.now.month == @profile.birthdate.month && Time.now.day >= @profile.birthdate.day)) ? 0 : 1) %>
+      <p>Age: <%= age %></p>
     <% end %>
-  </div>
 
-  <div class="profile-username">
-    <% if @profile.username.present? %>
-      <h4><%= @profile.username %></h4>
-    <% end %>
-  </div>
-
-  <div class="profile-picture-round">
-    <% if @profile.photo.present? %>
-      <%= cl_image_tag @profile.photo.key %>
-    <% else %>
-      <%= image_tag "Default_pfp.jpg", alt: "Default Profile Picture" %>
-    <% end %>
-  </div>
-
-  <div class="profile-lastname">
-    <%= @user.first_name %>
-    <% if @profile.last_name.present? %>
-      <p><%= @profile.last_name[0] %>.</p>
-    <% end %>
-  </div>
-
-  <% if @profile.birthdate.present? %>
-    <% age = Time.now.year - @profile.birthdate.year - ((Time.now.month > @profile.birthdate.month || (Time.now.month == @profile.birthdate.month && Time.now.day >= @profile.birthdate.day)) ? 0 : 1) %>
-    <p>Age: <%= age %></p>
-  <% end %>
-
-  <% if @profile.bio.present? %>
+    <% if @profile.bio.present? %>
       <p>Bio: <%= @profile.bio %></p>
-  <% end %>
+    <% end %>
 
-  <% if @profile.interests.present? %>
+    <% if @profile.interests.present? %>
       <p>Interests: <%= @profile.interests %></p>
-  <% end %>
+    <% end %>
 
-  <% if @profile.city.present? %>
+    <% if @profile.city.present? %>
       <p>📍 <%= @profile.city %></p>
-  <% end %>
+    <% end %>
+
+    <% unless @profile == current_user.profile %>
+      <% if @chatroom %>
+        <div class="chat-message">
+          <%= link_to "Message", chatroom_path(@chatroom) %>
+        </div>
+      <% else %>
+        <div class="chat-message">
+          <%= simple_form_for Chatroom.new do |f| %>
+            <%= f.input :receiver_id, input_html: { class:"d-none", value: @profile.user.id } %>
+            <%= f.input :sender_id, input_html: { class:"d-none", value: current_user.id } %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
 
 </div>
