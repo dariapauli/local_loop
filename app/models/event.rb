@@ -11,12 +11,23 @@ class Event < ApplicationRecord
   validates :time, presence: true
   # validates :price, numericality: { greater_than: 0.00, message: "Price cannot be lesser than 0" }
   CATEGORY = %w[Music Comedy Art Food Drinks Market Help Lesson Party Gardening Literature Sports Pets Religion Film Babies Housesitting Weird Other]
-  # PRICE = [0..200]
+
+  def self.price_ranges(step)
+    ranges = []
+    start = 0
+    while start < 50 # Adjust the maximum price as needed
+      ranges << ["#{start + 1}-#{start + step}€", start + 1..start + step ]
+      start += step
+    end
+    ranges << ["50-100€", 50..100]
+    ranges.unshift(["Free", 0])
+    ranges
+  end
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
   scope :with_category, ->(category) { where(category: category) if category.present? }
   scope :with_age_group, ->(age_group) { where(age_group: age_group) if age_group.present? }
-  # scope :with_price, ->(price) { where(:price) if price.present? }
+  scope :with_price, ->(price) { where(price: price) if price.present? }
 end

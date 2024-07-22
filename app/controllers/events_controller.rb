@@ -12,6 +12,18 @@ class EventsController < ApplicationController
       if params[:age_group].present?
         @events = @events.with_age_group(params[:age_group])
       end
+
+      if params[:price].present?
+        if params[:price] == "0"
+          @events = @events.with_price(params[:price])
+        else
+          prices = params[:price].split("..").map {|number| number.to_f}
+          @events = @events.where(price: prices[0]..prices[1])
+        end
+      end
+
+      @price_ranges = Event.price_ranges(10)
+
       @markers = @events.geocoded.map do |event|
         {
           lat: event.latitude,
@@ -28,19 +40,6 @@ class EventsController < ApplicationController
       flash[:alert] = "Postcode is required"
       redirect_to search_events_path and return
     end
-
-    # if params[:price].present?
-    #   @events = Event.with_price(selected_price)
-    # end
-
-    # selected_price = params[:price]
-
-    # if selected_price == "Free"
-    #   @events = Event.where(price: 0.00)
-    # else
-    #   price = selected_price.to_f
-    #   @events = Event.where("price > ?", price)
-    # end
   end
 
   def new

@@ -25,6 +25,45 @@
   padding: 10px;
 }
 
+.text-green {
+  color: #8EBD9D;
+  font-weight: 800;
+  align-items: center;
+  padding: 5px;
+  margin: 3px 3px 3px 6px;
+}
+
+.text-blue {
+  color:#1B475D;
+  text-align: justify;
+  margin-left: 15px;
+  padding-left: 5px;
+}
+
+.dropdown-row {
+  margin-left: 15px;
+}
+
+.dropdown-filters {
+  margin: 5px;
+  justify-content: space-evenly;
+}
+
+select {
+  border: none;
+  background-color: transparent;
+  color: #1B475D;
+  padding: 5px;
+  margin: 3px;
+}
+
+button {
+  border: none;
+  background-color: #1B475D;
+  color: #FFFBEE;
+  border-radius: 7px;
+}
+
 .category-box {
   background-color: #1B475D;
   color: #FFFBEE;
