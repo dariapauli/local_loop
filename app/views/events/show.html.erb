@@ -37,6 +37,41 @@
       edit_event_path(@event), class: "show-edit"%>
 <% end %>
 
+<!-- CAROUSEL -->
+<h2>Who else already joined? </h2>
+<% if @participants.present? %>
+  <div id="participantsCarousel" class="carousel slide" data-ride="carousel" >
+    <div class="carousel-inner">
+      <% @participants.reverse.in_groups_of(12, false).each_with_index do |group, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <div class="d-flex justify-content-around">
+            <% group.each do |user|  %>
+              <div class="avatar">
+                <%#  @event.users.each do |user| %>
+                <% if @profile && @profile.photo.present? %>
+                  <%= cl_image_path @profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;" %>
+                <% else %>
+                  <%= image_tag "Default_pfp.jpg", class:"d-block", alt: "Default Profile Picture", style: "width: 50px; height: 50px;" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- Left and right controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#participantsCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#participantsCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<% end %>
+<!-- CAROUSEL -->
+
 <div>
   <%= button_to "Book Now!", participation_event_path(@event), data: {turbo_method: 'post', bs_toggle: "modal", bs_target: "#exampleModal" }, class:"btn-participate", disabled: @event.user == current_user %>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
