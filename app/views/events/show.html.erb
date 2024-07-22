@@ -37,23 +37,23 @@
       edit_event_path(@event), class: "show-edit"%>
 <% end %>
 
+<div>
 <% if @event.user != current_user %>
-  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" <%= disabled %>>
-  <%= link_to "Participate", participation_event_path(@event), data: {turbo_method: 'post'} %>
+  <button type="button" class="btn btn.participate" data-bs-toggle="modal" data-bs-target="#exampleModal" <%= disabled %>>
+  <%= link_to "Book Now!", participation_event_path(@event), data: {turbo_method: 'post'}, class:"btn-participate" %>
   </button>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Welcome to our new event!</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-header border-0">
+          <h1 class="modal-title fs-0" id="exampleModalLabel">Awesome!</h1>
         </div>
         <div class="modal-body">
-          <p>We are really happy to have you! Now you can participate as a team member</p>
+          <p>You are successfully registered, see you there!</p>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= link_to "Ok, Thanks", event_path(@event) %></button>
-          <button type="button" class="btn btn-dark"><%= link_to "Go to dashboard", bookings_path %></button>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= link_to "Ok, Thanks", event_path(@event), class:"btn" %></button>
+          <%= link_to "Go to dashboard", bookings_path, class:"a-link" %>
         </div>
 
       </div>
