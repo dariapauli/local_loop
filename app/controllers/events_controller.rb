@@ -2,22 +2,44 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[participation show edit update destroy]
 
   def index
-    # @events = Event.all
 
     if params[:search][:postcode].present? # && params[:search][:city].present?
       @events = Event.where('address ILIKE ? OR address ILIKE ?', "%#{params[:search][:postcode]}%", "%#{params[:search][:city]}%")
+      if params[:category].present?
+        @events = @events.with_category(params[:category])
+      end
+
+      if params[:age_group].present?
+        @events = @events.with_age_group(params[:age_group])
+      end
+
+      if params[:price].present?
+        if params[:price] == "0"
+          @events = @events.with_price(params[:price])
+        else
+          prices = params[:price].split("..").map {|number| number.to_f}
+          @events = @events.where(price: prices[0]..prices[1])
+        end
+      end
+
+      @price_ranges = Event.price_ranges(10)
+
       @markers = @events.geocoded.map do |event|
         {
           lat: event.latitude,
           lng: event.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: {event: event})
+          info_window_html: render_to_string(partial: "info_window", locals: { event: event }, formats: :html )
         }
+      end
+
+      respond_to do |format|
+        format.html
+        format.json
       end
     elsif params[:postcode].blank?
       flash[:alert] = "Postcode is required"
       redirect_to search_events_path and return
     end
-
   end
 
   def new
