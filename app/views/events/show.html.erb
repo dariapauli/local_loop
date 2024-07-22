@@ -15,10 +15,10 @@
   <p>Time: <%= @event.time.strftime("%I:%M %p") %></p>
   <p>Category: <%= @event.category %></p>
   <p>Age Group: <%= age_group_to_string(@event) %></p>
-  <% if event.price == 0 %>
-        <p>Price: Free</p>
-      <% else %>
-        <%= number_to_currency(event.price, unit: "€") %>
+  <% if @event.price == 0 %>
+    <p>Free</p>
+  <% else %>
+    <%= number_to_currency(@event.price, unit: "€") %>
   <% end %>
   <p>Description: <%= @event.description %></p>
  <% if @event.user == current_user %>
