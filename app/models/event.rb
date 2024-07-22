@@ -10,13 +10,13 @@ class Event < ApplicationRecord
   # validates :description, presence: true, length: { maximum: 200 }
   validates :time, presence: true
   # validates :price, numericality: { greater_than: 0.00, message: "Price cannot be lesser than 0" }
-  CATEGORY = %w[Music Comedy Food Drinks Market Help Lesson Party Gardening Literature Sports Pets Religion Film Babies Housesitting Weird Other]
+  CATEGORY = %w[Music Comedy Art Food Drinks Market Help Lesson Party Gardening Literature Sports Pets Religion Film Babies Housesitting Weird Other]
   # PRICE = [0..200]
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  scope :with_category, ->(category) { where(:category) if category.present? }
-  scope :with_age_group, ->(age_group) { where(:age_group) if age_group.present? }
+  scope :with_category, ->(category) { where(category: category) if category.present? }
+  scope :with_age_group, ->(age_group) { where(age_group: age_group) if age_group.present? }
   # scope :with_price, ->(price) { where(:price) if price.present? }
 end

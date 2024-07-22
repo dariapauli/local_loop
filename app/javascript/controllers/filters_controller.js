@@ -1,33 +1,32 @@
 import { Controller } from "@hotwired/stimulus";
 
-
 export default class extends Controller {
-  static targets = [
-    "selectCategory",
-    "selectAgeGroup",
-    "selectPrice",
-    "showEvents"
-  ]
+
   connect() {
-    this.form = this.element.querySelector("form");
-    this.form.addEventListener("change")
+
   }
 
-  changeForm(event){
-    event.preventDefault();
-    this.form.requestSubmit();
-  }
+  updateEvents(event) {
+    const url = new URL (window.location.href)
+    if (event.currentTarget.name === "category") {
+      url.searchParams.delete("category")
+      url.searchParams.set("category", event.currentTarget.value)
+    } else if (event.currentTarget.name === "age_group") {
+      url.searchParams.delete("age_group")
+      url.searchParams.set("age_group", event.currentTagret.value)
+    } else {
+      info = "No filters selected"
+    }
 
-  filterCategory(event) {
-    this.showEvents.target
-  }
-
-  filterAgeGroup(event) {
-    console.log("miau")
-  }
-
-  filterPrice(event) {
-    console.log("woof")
+    fetch(`${url.href}`,
+      {
+        headers: { "Accept": "application/json" }
+      }
+    )
+      .then(response => response.json())
+      .then((data) => {
+        this.element.outerHTML = data.filtered_events
+      })
   }
 
 }

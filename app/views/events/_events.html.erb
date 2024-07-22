@@ -1,0 +1,77 @@
+<div data-controller="filters">
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
+
+  <div>
+    <div class="header-fixed">
+      <h4 class="text-info">Filter By:</h4>
+    </div class="dropdown-filters d-flex flex-row justify-content-around">
+      <%= form_with(url: events_path, method: :get,
+                    data: {
+                      # turbo_frame: "filter_results",
+                      # turbo_action: "advance",
+                    }) do |form| %>
+        <div>
+          <%= form.select :category, Event::CATEGORY, { prompt: "Category", class: "border-0 bg-transparent" }, { data: { action: "change->filters#updateEvents" } } %>
+        </div>
+        <div>
+          <%= form.select :age_group, Event.age_groups.collect{|key, value| [key.to_s.titleize, value]}, {prompt: "Age Group", class: "border-0 bg-transparent"}, { data: { action: "change->filters#updateEvents" } } %>
+        </div>
+        <div>
+          <%# <%= form.select :price, prompt: "Price" %>
+        </div>
+      <% end %>
+  </div>
+
+  <div>
+    <% if @events.present? %>
+      <p><%= @events.count %> events found</p>
+      <% @events.each do |event| %>
+        <div class="event-cards">
+          <div class="text-container">
+            <h2><%= link_to event.name, event_path(event), class: "link-underline-opacity-0" %></h2>
+            <p><%= event.description %></p>
+            <div class="flex-direction-row mb-2">
+              <i class="fa-solid fa-location-dot"></i>
+              <%= event.address %>
+            </div>
+            <div class="flex-direction-row mb-2">
+              <% if event.date.present? %>
+                <i class="fa-regular fa-calendar-days"></i>
+                <%= event.date.strftime("%A, %B %d, %Y") %>
+              <% end %>
+              <% if event.time.present? %>
+                <i class="fa-regular fa-clock"></i>
+                <%= event.time.strftime("%I:%M %p") %>
+              <% end %>
+            </div>
+            <div class="d-flex flex-direction-row">
+              <div class="category-box">
+                <%= event.category %>
+              </div>
+              <div class="age-box">
+                <%= age_group_to_string(event) %>
+              </div>
+            </div>
+          </div>
+
+          <div class="price-box float-right">
+            <% if event.price == 0 %>
+              <p class="blue-price">Free</p>
+            <% else %>
+              <p class="beige-price">
+                <%= number_to_currency(event.price, unit: "€") %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>There is no event in this city</p>
+    <% end  %>
+  </div>
+</div>
