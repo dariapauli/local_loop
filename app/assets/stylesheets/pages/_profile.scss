@@ -1,4 +1,17 @@
-.father-container {
+
+.profile-father {
+  width: 100%;
+  height: 100%;
+  background-color: #FFFDF6;
+}
+
+.profile-picture {
+  height: 50px;
+  width: 50px;
+  max-width: 100px;
+  }
+
+.second-container {
   display: flex;
   justify-content: center;
   align-items: center;
