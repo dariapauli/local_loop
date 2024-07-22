@@ -1,0 +1,15 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-image: none; /* Remove the default icon */
+  width: 30px;
+  height: 30px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url('left_arrow_blue.png');
+}
+
+.carousel-control-next-icon {
+  background-image: url('right_arrow_blue.png');
+}
+
