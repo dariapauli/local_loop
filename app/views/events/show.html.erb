@@ -38,10 +38,7 @@
 <% end %>
 
 <div>
-<% if @event.user != current_user %>
-  <button type="button" class="btn btn.participate" data-bs-toggle="modal" data-bs-target="#exampleModal" <%= disabled %>>
-  <%= link_to "Book Now!", participation_event_path(@event), data: {turbo_method: 'post'}, class:"btn-participate" %>
-  </button>
+  <%= button_to "Book Now!", participation_event_path(@event), data: {turbo_method: 'post', bs_toggle: "modal", bs_target: "#exampleModal" }, class:"btn-participate", disabled: @event.user == current_user %>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -59,7 +56,6 @@
       </div>
     </div>
   </div>
-<% end %>
 
 <%= link_to "Back to search", search_events_path(@event)%>
   <div class="comments">
