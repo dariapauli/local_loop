@@ -1,7 +1,7 @@
 .landhome {
   width: 100vw;
-  height: 92vh;
-  background-color: #FFF7D4;
+  height: 100vh;
+  background-color: #8EBD9D;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,9 +37,18 @@
 }
 
 .land-link {
+  width: 250px;
+  height: 45px;
+  background-color: #FFF5D0;
   text-decoration: none;
-  color: #FFF7D4;
+  color: #1B475D;
   font-size: 20px;
+  border-radius: 10px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
 }
 
 .land-link:hover {
