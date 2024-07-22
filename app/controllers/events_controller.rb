@@ -68,6 +68,7 @@ class EventsController < ApplicationController
     @comments = @event.comments
     @comment = Comment.new
     @profile = current_user.profile
+    @organizer = @event.organizer
   end
 
   private
