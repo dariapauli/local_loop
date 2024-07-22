@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
   def show
     @user = current_user
     @profile = Profile.find(params[:id])
+    @chatroom = Chatroom.find_by_users(@profile.user, current_user)
   end
 
   def edit

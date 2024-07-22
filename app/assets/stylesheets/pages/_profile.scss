@@ -1,5 +1,11 @@
-.profile-picture {
-  height: 100px;
-  width: 100px;
+.father-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-pic {
+  width: 150px;
   border-radius: 50%;
 }
