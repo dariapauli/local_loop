@@ -3,21 +3,33 @@ class EventsController < ApplicationController
 
   def index
     # @events = Event.all
+    postcode = params[:search][:postcode]
+    city = params[:search][:city]
 
-    if params[:search][:postcode].present? # && params[:search][:city].present?
-      @events = Event.where('address ILIKE ? OR address ILIKE ?', "%#{params[:search][:postcode]}%", "%#{params[:search][:city]}%")
-      @markers = @events.geocoded.map do |event|
-        {
-          lat: event.latitude,
-          lng: event.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: {event: event})
-        }
+    if postcode.present?
+      # Validate that postcode is exactly 5 digits
+      if postcode.match?(/\A\d{5}\z/)
+        if city.present?
+          @events = Event.where("address ILIKE ? AND address ~ ?", "%#{city}%", "\\m#{postcode}\\M")
+        else
+          @events = Event.where("address ~ ?", "\\m#{postcode}\\M")
+        end
+
+        @markers = @events.geocoded.map do |event|
+          {
+            lat: event.latitude,
+            lng: event.longitude,
+            info_window_html: render_to_string(partial: "info_window", locals: { event: event })
+          }
+        end
+      else
+        flash[:alert] = "Postcode must be 5 digits"
+        redirect_to search_events_path and return
       end
-    elsif params[:postcode].blank?
+    else
       flash[:alert] = "Postcode is required"
       redirect_to search_events_path and return
     end
-
   end
 
   def new
