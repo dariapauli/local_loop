@@ -37,6 +37,21 @@
       edit_event_path(@event), class: "show-edit"%>
 <% end %>
 
+<%#= WORKING HERE %>
+<h2>Who else already joined? </h2>
+<div class="participants">
+  <div class="avatar">
+    <% @event.users.each do |user| %>
+      <% if @profile && @profile.photo.present? %>
+        <%= cl_image_path @profile.photo.key, class:"avatar" %>
+      <% else %>
+        <%= image_tag "Default_pfp.jpg", alt: "Default Profile Picture" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<%#= WORKING HERE %>
+
 <% if @event.user != current_user %>
   <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" <%= disabled %>>
   <%= link_to "Participate", participation_event_path(@event), data: {turbo_method: 'post'} %>
