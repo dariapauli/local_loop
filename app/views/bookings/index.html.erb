@@ -37,6 +37,9 @@
                         <%= event.address %>
                       <% end %>
                     </div>
+                    <div class="ellipsis">
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
                   </li>
                 </div>
               <% end %>
@@ -85,6 +88,9 @@
                       <% else %>
                         <%= number_to_currency(event.price, unit: "€") %>
                       <% end %>
+                    </div>
+                    <div class="ellipsis">
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                   </li>
                 </div>
