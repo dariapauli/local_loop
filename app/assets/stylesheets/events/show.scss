@@ -1,3 +1,73 @@
+// Modal Starts here
+.modal-dialog {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+
+.modal-content {
+  width: 90%;
+  height: 70%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(142,189,157);
+  background: radial-gradient(circle, rgba(142,189,157,0.9108018207282913) 68%, rgba(142,189,157,0.9192051820728291) 100%);
+  border: 4px solid #FFFBEE;
+  border-radius: 10px;
+}
+
+.modal-header {
+  margin-top: 25%;
+}
+
+.modal-title {
+  color: #FFFBEE;
+  font-size: 55px;
+  font-weight: 600;
+}
+
+.modal-body p {
+  padding: 5px;
+  color: #1B475D;
+  font-size: 20px;
+  text-align: center;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20%;
+  width: 100%;
+}
+
+.modal-footer .btn {
+  color: #FFFBEE;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.btn-secondary {
+  background-color: #1B475D;
+  width: 85%;
+  border-radius: 8px;
+}
+
+.a-link {
+  margin-top: 5px;
+  text-decoration: none;
+  color: #FFFBEE;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+
+// Modal ends here
+
 .event-show {
   width: 100vw;
   height: 100vh;
@@ -10,4 +80,19 @@
 
 .show-image {
   width: 25%;
+}
+
+.btn-bookings {
+  border: none;
+  background-color: transparent;
+}
+
+.btn-participate {
+  color: #FFFBEE;
+  text-decoration: none;
+  background-color: #1B475D;
+  font-size: 15px;
+  padding: 10px;
+  padding-inline: 15px;
+  border-radius: 8px;
 }
