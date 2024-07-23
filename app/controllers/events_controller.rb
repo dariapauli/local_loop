@@ -27,7 +27,7 @@ class EventsController < ApplicationController
           if params[:price] == “0”
             @events = @events.with_price(params[:price])
           else
-            prices = params[:price].split(“..“).map {|number| number.to_f}
+            prices = params[:price].split("..").map {|number| number.to_f}
             @events = @events.where(price: prices[0]..prices[1])
           end
         end
@@ -38,7 +38,7 @@ class EventsController < ApplicationController
           {
             lat: event.latitude,
             lng: event.longitude,
-            info_window_html: render_to_string(partial: “info_window”, locals: { event: event }, formats: :html )
+            info_window_html: render_to_string(partial: "info_window", locals: { event: event }, formats: :html )
           }
         end
 
