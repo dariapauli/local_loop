@@ -1,52 +1,69 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "Logo_small.png", alt: "Home", class: "navbar-logo" %>
+  <div class="container-fluid d-flex justify-content-between">
+    <!-- left arrow chevron here -->
+    <%= link_to 'javascript:history.back()', class: 'navbar-prev-icon' do %>
+      <i class="fa-sharp fa-solid fa-chevron-left fa-lg" style="color: #9723c9;"></i>
     <% end %>
-
+    <!-- logo container -->
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "logo-icon-purple.png", alt: "Home", class: "navbar-logo" %>
+    <% end %>
+    <!-- toggled menu -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <i class="fa-sharp fa-solid fa-bars" style="color: #9723c9;"></i>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-         <li class="nav-item">
-            <%= link_to "Dashboard", bookings_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "Find Events", search_events_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Create Events", new_event_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <% if @profile.present? %>
-                <% if @profile.photo.present? %>
-                  <%= cl_image_tag(@profile.photo.key, transformation: { width: 50, height: 50, crop: :fill }, alt: "Profile Picture")  %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <% if user_signed_in? %>
+            <!-- profile dropdown -->
+            <li class="nav-item dropdown">
+              <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <% if @profile.present? %>
+                <!-- profile picture -->
+                  <% if @profile.photo.present? %>
+                    <%= cl_image_tag(@profile.photo.key, transformation: { width: 50, height: 50, crop: :fill }, alt: "Profile Picture")  %>
+                  <% else %>
+                    <%= image_tag "default_avatar.png", alt: "Default Profile Picture", class: "navbar-image" %>
+                  <% end %>
                 <% else %>
-                  <%= image_tag "default_avatar.png", alt: "Default Profile Picture", class: "navbar-image" %>
+                  <%= image_tag "default_avatar.png", class: "avatar", alt: "dropdown menu", class: "navbar-image" %>
                 <% end %>
-              <% else %>
-                <%= image_tag "default_avatar.png", class: "avatar", alt: "dropdown menu", class: "navbar-image" %>
-              <% end %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Profile", profile_path(current_user.id), class: "dropdown-item" %>
-              <%= link_to "Edit Profile", edit_profile_path(current_user.id), class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+                <!-- profile name and email -->
+              </a>
+              <p><%=current_user.first_name%></p>
+              <p><%=current_user.email%></p>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to "Profile", profile_path(current_user.id), class: "dropdown-item" %>
+                <%= link_to "Edit Profile", edit_profile_path(current_user.id), class: "dropdown-item" %>
+              </div>
+            </li>
+            <!-- homepage -->
+            <li class="nav-item">
+              <%= link_to "Home", landhome_path, class: "nav-link" %>
+            </li>
+            <!-- dashboard -->
+            <li class="nav-item">
+              <%= link_to "Dashboard", bookings_path, class: "nav-link" %>
+            </li>
+            <!-- find events -->
+            <li class="nav-item active">
+              <%= link_to "Find Events", search_events_path, class: "nav-link" %>
+            </li>
+            <!-- create events -->
+            <li class="nav-item">
+              <%= link_to "Create Events", new_event_path, class: "nav-link" %>
+            </li>
+            <!-- log out -->
+            <li class="nav-item">
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %> <%# change to logout %>
+            </li>
+        <!-- if user is signed out starts here -->
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
   </div>
 </div>
