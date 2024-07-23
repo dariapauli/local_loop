@@ -13,8 +13,29 @@
   <p>Address: <%= @event.address %></p>
   <p>Date: <%= @event.date.strftime("%A, %B %d, %Y") %></p>
   <p>Time: <%= @event.time.strftime("%I:%M %p") %></p>
-  <p>Category: <%= @event.category %></p>
-  <p>Age Group: <%= age_group_to_string(@event) %></p>
+
+  <%# WORKING HERE %>
+  <% if @organizer.present? %>
+    <% if current_user == @organizer  %>
+      <% if @profile && @profile.photo.present? %>
+        <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
+      <% else %>
+        <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+      <% end %>
+      <p>You</p>
+      <%# = cl_image_path current_user.profile.photo.key, class: "organizer_picture" %>
+    <% else %>
+      <% if @profile && @profile.photo.present? %>
+        <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
+      <% else %>
+        <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+      <% end %>
+      <%# = cl_image_path @organizer.profile.photo.key, class: 'organizer-picture' %>
+      <p><%= @organizer.profile.last_name %></p>
+    <% end %>
+  <% end %>
+  <%# WORKING HERE %>
+
   <% if @event.price == 0 %>
     <p>Free</p>
   <% else %>
@@ -72,8 +93,10 @@
 <% end %>
 <!-- CAROUSEL -->
 
+<%# raise %>
+
 <div>
-  <%= button_to "Book Now!", participation_event_path(@event), data: {turbo_method: 'post', bs_toggle: "modal", bs_target: "#exampleModal" }, class:"btn-participate", disabled: @event.user == current_user %>
+  <%= button_to "Book Now!", participation_event_path(@event), data: {turbo_method: 'post', bs_toggle: "modal", bs_target: "#exampleModal" }, class:"btn-participate", disabled: @event.users.include?(current_user) %>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

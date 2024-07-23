@@ -3,40 +3,55 @@ class EventsController < ApplicationController
 
   def index
 
-    if params[:search][:postcode].present? # && params[:search][:city].present?
-      @events = Event.where('address ILIKE ? OR address ILIKE ?', "%#{params[:search][:postcode]}%", "%#{params[:search][:city]}%")
-      if params[:category].present?
-        @events = @events.with_category(params[:category])
-      end
+    postcode = params[:search][:postcode]
+    city = params[:search][:city]
 
-      if params[:age_group].present?
-        @events = @events.with_age_group(params[:age_group])
-      end
-
-      if params[:price].present?
-        if params[:price] == "0"
-          @events = @events.with_price(params[:price])
+    if postcode.present?
+      # Validate that postcode is exactly 5 digits
+      if postcode.match?(/\A\d{5}\z/)
+        if city.present?
+          @events = Event.where("address ILIKE ? AND address ~ ?", "%#{city}%", "\\m#{postcode}\\M")
         else
-          prices = params[:price].split("..").map {|number| number.to_f}
-          @events = @events.where(price: prices[0]..prices[1])
+          @events = Event.where("address ~ ?", "\\m#{postcode}\\M")
         end
-      end
 
-      @price_ranges = Event.price_ranges(10)
+        if params[:category].present?
+          @events = @events.with_category(params[:category])
+        end
 
-      @markers = @events.geocoded.map do |event|
-        {
-          lat: event.latitude,
-          lng: event.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: { event: event }, formats: :html )
-        }
-      end
+        if params[:age_group].present?
+          @events = @events.with_age_group(params[:age_group])
+        end
 
-      respond_to do |format|
-        format.html
-        format.json
+        if params[:price].present?
+          if params[:price] == "0"
+            @events = @events.with_price(params[:price])
+          else
+            prices = params[:price].split("..").map {|number| number.to_f}
+            @events = @events.where(price: prices[0]..prices[1])
+          end
+        end
+
+        @price_ranges = Event.price_ranges(10)
+
+        @markers = @events.geocoded.map do |event|
+          {
+            lat: event.latitude,
+            lng: event.longitude,
+            info_window_html: render_to_string(partial: "info_window", locals: { event: event }, formats: :html )
+          }
+        end
+
+        respond_to do |format|
+          format.html
+          format.json
+        end
+
+      else
+        flash[:alert] = "Postcode must be 5 digits"
+        redirect_to search_events_path and return
       end
-    elsif params[:postcode].blank?
+    else
       flash[:alert] = "Postcode is required"
       redirect_to search_events_path and return
     end
@@ -90,6 +105,7 @@ class EventsController < ApplicationController
     @comments = @event.comments
     @comment = Comment.new
     @profile = current_user.profile
+    @organizer = @event.organizer
   end
 
   private
