@@ -27,12 +27,12 @@
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if @profile.present? %>
                 <% if @profile.photo.present? %>
-                  <%= cl_image_tag @profile.photo.key %>
+                  <%= cl_image_tag(@profile.photo.key, transformation: { width: 50, height: 50, crop: :fill }, alt: "Profile Picture")  %>
                 <% else %>
-                  <%= image_tag "Default_pfp.jpg", alt: "Default Profile Picture" %>
+                  <%= image_tag "default_avatar.png", alt: "Default Profile Picture", class: "navbar-image" %>
                 <% end %>
               <% else %>
-                <%= image_tag "Default_pfp.jpg", class: "avatar", alt: "dropdown menu" %>
+                <%= image_tag "default_avatar.png", class: "avatar", alt: "dropdown menu", class: "navbar-image" %>
               <% end %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
