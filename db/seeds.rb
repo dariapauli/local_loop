@@ -11,7 +11,7 @@
 require "open-uri"
 
 User.destroy_all
-u1 = User.create!(email: 'example_user@example.com', password: 'password')
+u1 = User.create!(email: 'example_user@example.com', password: 'password', first_name: 'Luis')
 fileu1 = URI.open("https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 profile_p1 = u1.profile
 profile_p1.photo.attach(io: fileu1, filename: "nes.png", content_type: "image/png")
