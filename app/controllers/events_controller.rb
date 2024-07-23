@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[participation show edit update destroy]
 
   def index
-    # @events = Event.all
+
     postcode = params[:search][:postcode]
     city = params[:search][:city]
 

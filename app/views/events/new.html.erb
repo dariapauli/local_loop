@@ -6,7 +6,7 @@
       <%= f.input :name, { class: "label-dark" }%>
       <%= f.input :description %>
       <%= f.input :address, presence: true, format: { with: /\A([^<>{}\\]|\s)+\z/, message: "Address can't be blank or contain special characters <>, {, }, or \" " } %>
-       <%= f.input :photo, as: :file %>
+      <%= f.input :photo, as: :file %>
       <%= f.input :age_group, collection: Event.age_groups.collect{|key, value| [key.to_s.titleize, value]}, as: :select, prompt: "Select an age group for your event" %>
       <%= f.input :date, as: :string, input_html: {data: {controller: "datepicker"}} %>
       <%= f.input :time %>
