@@ -1,8 +1,28 @@
 
 .profile-father {
-  width: 100%;
-  height: 100%;
-  background-color: #FFFDF6;
+  width: 100vw;
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #A388EE;
+}
+
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 85%;
+  min-height: 65%;
+  max-height: 80%;
+  border: 4px solid #000;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 3px 3px 2px #000;
 }
 
 .profile-picture {
@@ -20,5 +40,27 @@
 
 .profile-pic {
   width: 150px;
-  border-radius: 50%;
+  height: 150px;
+  border-radius: 25px;
+  border: 3px solid #000;
+}
+
+.profile-username h4 {
+  font-size: 32px;
+  color: #9723C9;
+  font-weight: 500;
+}
+
+.chatedit {
+  background-color: #D8FB4A;
+  border: 3px solid #000;
+  box-shadow: 2px 2px 1px #000;
+}
+
+.chat-button {
+  margin-top: 1rem;
+  background-color: #D8FB4A;
+  width: 120px;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 2px #000;
 }
