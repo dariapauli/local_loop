@@ -10,12 +10,129 @@
 
 require "open-uri"
 
-User.destroy_all
-u1 = User.create!(email: 'example_user@example.com', password: 'password', first_name: 'Luis')
-fileu1 = URI.open("https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+Event.delete_all
+Profile.delete_all
+User.delete_all
+
+u1 = User.create!(email: 'example_user@example.com', password: 'password', first_name: 'Jacob')
+filee1 = URI.open("https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 profile_p1 = u1.profile
-profile_p1.photo.attach(io: fileu1, filename: "nes.png", content_type: "image/png")
+profile_p1.photo.attach(io: filee1, filename: "nes.png", content_type: "image/png")
 profile_p1.save
+
+u2 = User.create!(email: 'lily@example.com', password: 'password', first_name: 'Lily')
+filee2 = URI.open("https://images.pexels.com/photos/1036620/pexels-photo-1036620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p2 = u2.profile
+profile_p2.photo.attach(io: filee2, filename: "nes.png", content_type: "image/png")
+profile_p2.save
+
+u3 = User.create!(email: 'william@example.com', password: 'password', first_name: 'William')
+filee3 = URI.open("https://images.pexels.com/photos/1073097/pexels-photo-1073097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p3 = u3.profile
+profile_p3.photo.attach(io: filee3, filename: "nes.png", content_type: "image/png")
+profile_p3.save
+
+u4 = User.create!(email: 'emily@example.com', password: 'password', first_name: 'Emily')
+filee4 = URI.open("https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p4 = u4.profile
+profile_p4.photo.attach(io: filee4, filename: "nes.png", content_type: "image/png")
+profile_p4.save
+
+u5 = User.create!(email: 'george@example.com', password: 'password', first_name: 'George')
+filee5 = URI.open("https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p5 = u5.profile
+profile_p5.photo.attach(io: filee5, filename: "nes.png", content_type: "image/png")
+profile_p5.save
+
+u6 = User.create!(email: 'olivia@example.com', password: 'password', first_name: 'Olivia')
+filee6 = URI.open("https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p6 = u6.profile
+profile_p6.photo.attach(io: filee6, filename: "nes.png", content_type: "image/png")
+profile_p6.save
+
+u7 = User.create!(email: 'harry@example.com', password: 'password', first_name: 'Harry')
+filee7 = URI.open("https://images.pexels.com/photos/834863/pexels-photo-834863.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p7 = u7.profile
+profile_p7.photo.attach(io: filee7, filename: "nes.png", content_type: "image/png")
+profile_p7.save
+
+u8 = User.create!(email: 'amelia@example.com', password: 'password', first_name: 'Amelia')
+filee8 = URI.open("https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p8 = u8.profile
+profile_p8.photo.attach(io: filee8, filename: "nes.png", content_type: "image/png")
+profile_p8.save
+
+u9 = User.create!(email: 'james@example.com', password: 'password', first_name: 'James')
+filee9 = URI.open("https://images.pexels.com/photos/1139743/pexels-photo-1139743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p9 = u9.profile
+profile_p9.photo.attach(io: filee9, filename: "nes.png", content_type: "image/png")
+profile_p9.save
+
+u10 = User.create!(email: 'sophia@example.com', password: 'password', first_name: 'Sophia')
+filee10 = URI.open("https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p10 = u10.profile
+profile_p10.photo.attach(io: filee10, filename: "nes.png", content_type: "image/png")
+profile_p10.save
+
+u11 = User.create!(email: 'thomas@example.com', password: 'password', first_name: 'Thomas')
+filee11 = URI.open("https://images.pexels.com/photos/842811/pexels-photo-842811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p11 = u11.profile
+profile_p11.photo.attach(io: filee11, filename: "nes.png", content_type: "image/png")
+profile_p11.save
+
+u12 = User.create!(email: 'isabella@example.com', password: 'password', first_name: 'Isabella')
+filee12 = URI.open("https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p12 = u12.profile
+profile_p12.photo.attach(io: filee12, filename: "nes.png", content_type: "image/png")
+profile_p12.save
+
+u13 = User.create!(email: 'arthur@example.com', password: 'password', first_name: 'Arthur')
+filee13 = URI.open("https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p13 = u13.profile
+profile_p13.photo.attach(io: filee13, filename: "nes.png", content_type: "image/png")
+profile_p13.save
+
+u14 = User.create!(email: 'olivia2@example.com', password: 'password', first_name: 'Olivia')
+filee14 = URI.open("https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p14 = u14.profile
+profile_p14.photo.attach(io: filee14, filename: "nes.png", content_type: "image/png")
+profile_p14.save
+
+u15 = User.create!(email: 'edward@example.com', password: 'password', first_name: 'Edward')
+filee15 = URI.open("https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p15 = u15.profile
+profile_p15.photo.attach(io: filee15, filename: "nes.png", content_type: "image/png")
+profile_p15.save
+
+u16 = User.create!(email: 'mia@example.com', password: 'password', first_name: 'Mia')
+filee16 = URI.open("https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p16 = u16.profile
+profile_p16.photo.attach(io: filee16, filename: "nes.png", content_type: "image/png")
+profile_p16.save
+
+u17 = User.create!(email: 'albert@example.com', password: 'password', first_name: 'Albert')
+filee17 = URI.open("https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p17 = u17.profile
+profile_p17.photo.attach(io: filee17, filename: "nes.png", content_type: "image/png")
+profile_p17.save
+
+u18 = User.create!(email: 'evelyn@example.com', password: 'password', first_name: 'Evelyn')
+filee18 = URI.open("https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p18 = u18.profile
+profile_p18.photo.attach(io: filee18, filename: "nes.png", content_type: "image/png")
+profile_p18.save
+
+u19 = User.create!(email: 'frederick@example.com', password: 'password', first_name: 'Frederick')
+filee19 = URI.open("https://images.pexels.com/photos/1121796/pexels-photo-1121796.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p19 = u19.profile
+profile_p19.photo.attach(io: filee19, filename: "nes.png", content_type: "image/png")
+profile_p19.save
+
+u20 = User.create!(email: 'grace@example.com', password: 'password', first_name: 'Grace')
+filee20 = URI.open("https://images.pexels.com/photos/1197132/pexels-photo-1197132.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+profile_p20 = u20.profile
+profile_p20.photo.attach(io: filee20, filename: "nes.png", content_type: "image/png")
+profile_p20.save
 
 Event.destroy_all
 e1 = Event.new(

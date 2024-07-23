@@ -1,8 +1,8 @@
 class Event < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user
   belongs_to :organizer, class_name: 'User', foreign_key: 'user_id'
   has_many :comments, dependent: :destroy
-  has_many :bookings, dependent: :destroy
+  has_many :bookings
   has_many :users, through: :bookings
   has_one_attached :photo, dependent: :destroy
   enum age_group: { children: 0, teenagers: 1, young_adults: 2, middle_aged: 3, adults: 4, seniors: 5, all_ages: 6 }
