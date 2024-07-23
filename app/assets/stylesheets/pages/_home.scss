@@ -1,7 +1,7 @@
 .home {
   display: flex;
   width: 100%;
-  height: 92vh;
+  height: 100vh;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -33,42 +33,32 @@
 
 .home-middle h2 {
   font-size: 45px;
-  color: #1B475D;
+  color: #000;
 }
 
 .home-middle p {
-  color: #1B475D;
+  color: #9723C9;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
 }
 
 .home-bottom {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.btn-primary {
-  margin-bottom: 25%;
-  background-color: #7DB28B;
-  width: 8rem;
-  height: 3rem;
-  border: 1px #7DB28B solid;
-  border-radius: 5px;
-}
-
-.btn-primary:hover {
+  height: 33.3;
   background-color: #FFF7D4;
-  transition: 1s ease;
-  border: 2px solid  #7DB28B;
 }
-
-
 
 .home-link {
+  width: 350px;
+  height: 45px;
   text-decoration: none;
-  color: #FFF7D4;
+  background-color: #D8FB4A;
   font-size: 20px;
-}
-
-.home-link:hover {
-  color: #7DB28B;
+  margin-bottom: 50px;
+  border: 4px solid #000;
+  border-radius: 5px;
+  box-shadow: 3px 3px 1px #000;
 }
