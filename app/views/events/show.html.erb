@@ -41,7 +41,6 @@
 
       <div class="event-image">
          <% if @organizer.present? %>
-<<<<<<< HEAD
         <% if current_user == @organizer  %>
           <% if @profile && @profile.photo.present? %>
             <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "carrousel-image") %>
@@ -60,24 +59,6 @@
           <p class="image-text">is the host </p>
         <% end %>
       <% end %>
-=======
-            <% if current_user == @organizer  %>
-              <% if @profile && @profile.photo.present? %>
-                <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "") %>
-              <% else %>
-                <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
-              <% end %>
-              <p>You</p>
-            <% else %>
-              <% if @profile && @profile.photo.present? %>
-                <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
-              <% else %>
-                <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
-              <% end %>
-              <p>organized by: </p>
-            <% end %>
-          <% end %>
->>>>>>> master
       </div>
 
     </div>
