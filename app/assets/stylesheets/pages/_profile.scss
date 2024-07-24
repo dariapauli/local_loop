@@ -50,9 +50,18 @@
 }
 
 .profile-text {
+  display: flex;
+  align-items: center;
   border: 3px solid black;
   border-radius: 7px;
-  padding: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.text-long {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
 }
 
 .second-container {
@@ -96,5 +105,17 @@
   background-color: #D8FB4A;
   width: 120px;
   border: 3px solid #000;
+  border-radius: 7px;
   box-shadow: 3px 3px 2px #000;
+}
+
+chatroom-button button {
+  background-color: #D8FB4A;
+  color: #000;
+  border: 3px solid black;
+  border-radius: 7px;
+  box-shadow: 4px 4px;
+  padding: 7px;
+  margin: 20px;
+  font-family: "Poppins", sans-serif;
 }

@@ -24,37 +24,44 @@
     </div>
 
     <div class="profile-info">
-      <div class="profile-age profile-text">
-        <% if @profile.birthdate.present? %>
+      <% if @profile.birthdate.present? %>
+        <div class="profile-age profile-text">
           <% age = Time.now.year - @profile.birthdate.year - ((Time.now.month > @profile.birthdate.month || (Time.now.month == @profile.birthdate.month && Time.now.day >= @profile.birthdate.day)) ? 0 : 1) %>
           <p>Age: <%= age %></p>
-        <% end %>
-      </div>
-      <div class="profile-city profile-text">
-        <% if @profile.city.present? %>
+        </div>
+      <% end %>
+      <% if @profile.city.present? %>
+        <div class="profile-city profile-text">
           <p><i class="fa-solid fa-location-dot"></i> <%= @profile.city %></p>
+        </div>
         <% end %>
-      </div>
     </div>
 
 
-  <div class="profile-text">
     <% if @profile.bio.present? %>
-      <p>Bio: <%= @profile.bio %></p>
+      <div class="profile-text text-long">
+        <p>Bio</p>
+        <%= @profile.bio %>
     <% end %>
     <% if @profile.interests.present? %>
-      <p>Interests: <%= @profile.interests %></p>
+        <p>Interests</p>
+        <%= @profile.interests %>
+      </div>
     <% end %>
-  </div>
 
-  <div class="profile-events">
+  <% if @events.count == 1 %>
+    <p>1 event created</p>
+  <% else %>
+    <p><%= @events.count %>events created</p>
+  <% end %>
+  <%# <div class="profile-events">
     <% @events.each do |event| %>
-      <%= cl_image_tag event.photo.key, class: "card-image", height: 70, width: 70,  crop: :fill  %>
-      <p>
-        <%= event.name %>
-      </p>
-    <% end %>
-  </div>
+      <%# <%= cl_image_tag event.photo.key, class: "card-image", height: 70, width: 70,  crop: :fill  %>
+      <%# <p> %>
+        <%# <%= event.name %>
+      <%# </p> %>
+    <%# <% end %>
+  <%# </div> %>
 
     <% if @profile.user == @user %>
         <%= link_to "Edit your profile", edit_profile_path(@profile), class:"btn chatedit" %>
@@ -75,7 +82,9 @@
           <%= simple_form_for Chatroom.new do |f| %>
             <%= f.input :receiver_id, input_html: { class:"d-none", value: @profile.user.id } %>
             <%= f.input :sender_id, input_html: { class:"d-none", value: current_user.id } %>
-            <%= f.submit %>
+            <button class="chatroom-button">
+              <%= f.submit %>
+            </button>
           <% end %>
         </div>
       <% end %>
