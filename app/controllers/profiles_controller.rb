@@ -7,6 +7,8 @@ class ProfilesController < ApplicationController
 
   def show
     @user = current_user
+    @organizer = User.find(params[:id])
+    @events = @organizer.events
     @profile = Profile.find(params[:id])
     @chatroom = Chatroom.find_by_users(@profile.user, current_user)
   end
