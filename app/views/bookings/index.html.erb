@@ -1,6 +1,5 @@
 <div class="bookings-index">
-  <h1 class="m-3">My Dashboard</h1>
-  <h4 class="greeting-bold m-3">Hey <%= @user.first_name %>!</h4>
+  <h1 class="greeting-bold m-3">Hey <%= @user.first_name %>!</h1>
   <p class="m-3">Looking for your events?</p>
 
   <div class="dashboard-container" data-controller="bookings">
@@ -10,7 +9,7 @@
     </div>
     <div class="column">
       <div id="created-events" >
-        <div data-bookings-target="eventsBox" class="eventbox">
+        <div data-bookings-target="eventsBox" class="eventbox border border-danger">
           <% if current_user.events.any? %>
             <% @my_created_events.each do |event| %>
               <div class="event-card">
@@ -36,7 +35,7 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="ellipsis">
+                  <div class="ellipsis border border-danger">
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                   </div>
                 </div>
@@ -58,7 +57,7 @@
       </div>
 
       <div id="booked-events" >
-        <div data-bookings-target="participationBox" class="participation-box">
+        <div data-bookings-target="participationBox" class="participation-box border border-danger">
           <% if @my_participations.any? %>
             <% @my_participations.each do |event| %>
               <div class="event-card">
@@ -70,7 +69,7 @@
                       <%= image_tag "event.jpg", alt: "event-default", width: 200 %>
                     <% end %>
                   </div>
-                  <div class="event-text flex-direction-column">
+                  <div class="event-text flex-direction-column border border-danger">
                     <h3 class="title-event"><%= link_to event.name, event_path(event), class: "dashboard-custom-link" %></h3>
                     <div>
                       <i class="fa-regular fa-calendar-days"></i> <%= event.date.strftime("%A, %B %d, %Y") %>
@@ -91,7 +90,7 @@
                       </p>
                     <% end %>
                   </div>
-                  <div class="ellipsis">
+                  <div class="ellipsis border border-danger">
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                   </div>
                 </div>

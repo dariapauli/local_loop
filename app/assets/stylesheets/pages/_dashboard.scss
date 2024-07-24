@@ -60,18 +60,23 @@ body {
 }
 
 // EVENT CARDS
-
+.event-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
 
 .event-card {
-  display: grid;
-  gap: 20px;
   border:3px solid black;
   box-shadow: 4px 4px;
   border-radius: 7px;
   padding: 5px 16px ;
-  margin-left: 15px;
   margin-bottom: 25px;
   background-color: white;
+  width: 100%;
 }
 
 .card-image {
@@ -108,7 +113,6 @@ i {
   border: 3px solid black;
   border-radius: 9px 0px 0px 9px;
   position: relative;
-  left: 39px;
 }
 
 .price-green {
