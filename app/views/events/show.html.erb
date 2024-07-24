@@ -17,20 +17,20 @@
   <%# WORKING HERE %>
   <% if @organizer.present? %>
     <% if current_user == @organizer  %>
+      <!-- if the user is the organizer, show picture + name of current user -->
       <% if @profile && @profile.photo.present? %>
-        <%= cl_image_path(@event.organizer.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
+        <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
       <% else %>
         <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
       <% end %>
       <p>You</p>
-      <%# = cl_image_path current_user.profile.photo.key, class: "organizer_picture" %>
     <% else %>
+    <!-- if the user is not the organizer, show picture + name of the organizer -->
       <% if @profile && @profile.photo.present? %>
-        <%= cl_image_path(@event.organizer.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
+        <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
       <% else %>
         <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
       <% end %>
-      <%# = cl_image_path @organizer.profile.photo.key, class: 'organizer-picture' %>
       <p><%= @organizer.first_name %></p>
     <% end %>
   <% end %>
