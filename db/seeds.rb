@@ -14,7 +14,7 @@ Event.delete_all
 Profile.delete_all
 User.delete_all
 
-u1 = User.create!(email: 'example_user@example.com', password: 'password', first_name: 'Jacob')
+u1 = User.create!(email: 'jacob@example.com', password: 'password', first_name: 'Jacob')
 filee1 = URI.open("https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 profile_p1 = u1.profile
 profile_p1.photo.attach(io: filee1, filename: "nes.png", content_type: "image/png")
@@ -701,7 +701,126 @@ e38 = Event.new(
   price: 0.00,
   user_id: u1.id
 )
-
 file38 = URI.open("https://images.pexels.com/photos/9543405/pexels-photo-9543405.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 e38.photo.attach(io: file38, filename: "nes.png", content_type: "image/png")
 e38.save
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u1.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u2.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u3.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u4.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u5.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u6.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u7.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u8.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u9.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u10.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u11.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u12.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u13.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u14.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u15.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u16.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u17.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u18.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u19.id,
+  event_id: event_neighborhood_bbq.id
+)
+
+event_neighborhood_bbq = Event.find_by(name: "Neighborhood BBQ")
+Booking.create!(
+  user_id: u20.id,
+  event_id: event_neighborhood_bbq.id
+)
