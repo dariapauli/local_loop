@@ -2,7 +2,7 @@
   <h1>Your new Event!</h1>
 
   <div class="new-offer">
-    <%= simple_form_for @event, html: { multipart: true } do |f| %>
+    <%= simple_form_for @event, html: { multipart: true, autocomplete: 'off'  } do |f| %>
       <div>
         <%= f.input :name, { class: "label-dark",  placeholder: "Name of event" } %>
       </div>
