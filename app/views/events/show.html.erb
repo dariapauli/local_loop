@@ -1,62 +1,84 @@
 <div class="event-show">
-     <% if @event.photo && @event.photo.key %>
-      <div class="card-category"
-        style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-        url('<%= cl_image_path @event.photo.key, class:"show-img" %>')">
-  </div>
-  <% else %>
-    <%= image_tag "event.jpg", alt: "train", width: 200 %>
-  <% end %>
+  <div class="card-category"
+          <% if @event.photo && @event.photo.key %>
+            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+            url('<%= cl_image_path @event.photo.key, class:"show-img" %>')">
+          <% else %>
+          <%= image_tag "event.jpg", alt: "train", width: 200 %>
+        <% end %>
+      </div>
 
-  <h1><%= @event.name %></h1>
+  <div class="event-content">
 
-  <p>Address: <%= @event.address %></p>
-  <p>Date: <%= @event.date.strftime("%A, %B %d, %Y") %></p>
-  <p>Time: <%= @event.time.strftime("%I:%M %p") %></p>
+    <div class="event-card">
+      <div class="card-top">
+        <h1><%= @event.name %></h1>
+        <div class="price">
+          <% if @event.price == 0 %>
+            <p>Free</p>
+          <% else %>
+            <%= number_to_currency(@event.price, unit: "€") %>
+          <% end %>
+        </div>
+      </div>
 
-  <%# WORKING HERE %>
-  <% if @organizer.present? %>
-    <% if current_user == @organizer  %>
-      <% if @profile && @profile.photo.present? %>
-        <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
-      <% else %>
-        <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+      <div class="event-data">
+        <div class="red-dot"></div>
+        <p>Location: <%= @event.address %></p>
+        </div>
+
+      <div class="event-data">
+        <div class="red-dot"></div><p><%= @event.date.strftime("%A, %B %d, %Y") %></p>
+      </div>
+
+      <div class="event-data">
+        <div class="red-dot"></div><p>Time: <%= @event.time.strftime("%I:%M %p") %></p>
+      </div>
+
+      <div class="event-image">
+         <% if @organizer.present? %>
+        <% if current_user == @organizer  %>
+          <% if @profile && @profile.photo.present? %>
+            <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "") %>
+          <% else %>
+            <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+        <% end %>
+          <p>You</p>
+        <% else %>
+        <% if @profile && @profile.photo.present? %>
+          <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
+        <% else %>
+          <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+        <% end %>
+          <p>organized by: </p>
+        <% end %>
       <% end %>
-      <p>You</p>
-      <%# = cl_image_path current_user.profile.photo.key, class: "organizer_picture" %>
-    <% else %>
-      <% if @profile && @profile.photo.present? %>
-        <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
-      <% else %>
-        <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+      </div>
+
+    </div>
+    <div class="event-card">
+       <p>Description: <%= @event.description %></p>
+        <% if @event.organizer == current_user %>
+          <%= link_to "Delete",
+          event_path(@event),
+          data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class: "show-delete"%>
       <% end %>
-      <%# = cl_image_path @organizer.profile.photo.key, class: 'organizer-picture' %>
-      <p><%= @organizer.profile.last_name %></p>
-    <% end %>
-  <% end %>
-  <%# WORKING HERE %>
+    </div>
 
-  <% if @event.price == 0 %>
-    <p>Free</p>
-  <% else %>
-    <%= number_to_currency(@event.price, unit: "€") %>
-  <% end %>
-  <p>Description: <%= @event.description %></p>
- <% if @event.organizer == current_user %>
-       <%= link_to "Delete",
-      event_path(@event),
-      data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class: "show-delete"%>
-    <% end %>
-  <% if @booking.nil? %>
-    <% disabled = "" %>
-    <% else %>
-    <% disabled = "disabled" %>
-  <% end %>
 
-<% if @event.organizer == current_user %>
-      <%= link_to "Edit",
-      edit_event_path(@event), class: "show-edit"%>
-<% end %>
+      <% if @booking.nil? %>
+        <% disabled = "" %>
+      <% else %>
+        <% disabled = "disabled" %>
+      <% end %>
+
+      <% if @event.organizer == current_user %>
+        <%= link_to "Edit",
+          edit_event_path(@event), class: "show-edit"%>
+      <% end %>
+
+
+
 
 <!-- CAROUSEL -->
 <h2>Who else already joined? </h2>
@@ -113,8 +135,14 @@
       </div>
     </div>
   </div>
-
 <%= link_to "Back to search", search_events_path(@event)%>
+  </div>
+
+
+
+
+<!-- Comments -->
+
   <div class="comments">
     <h1>Post Something:</h1>
       <%= simple_form_for [@event, @comment] do |f| %>
