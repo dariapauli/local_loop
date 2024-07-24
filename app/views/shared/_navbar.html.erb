@@ -16,9 +16,10 @@
         <ul class="navbar-nav me-auto d-flex justify-content-center">
           <% if user_signed_in? %>
             <!-- profile dropdown -->
-            <li class="nav-item dropdown">
-              <li class="nav-item">
+            <li class="nav-info dropdown">
+              <li class="nav-info">
                 <div class="d-flex justify-content-between align-items-center">
+                <div class="avatar-container">
                   <div class="icon-avatar">
                     <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <% if current_user.profile.present? %>
@@ -35,6 +36,7 @@
                       <%= link_to "Edit Profile", edit_profile_path(current_user.id), class: "dropdown-item" %>
                     </div>
                   </div>
+                </div>
                 <!-- profile name and email -->
                   <div class="me-auto">
                   <div class="content-right">
@@ -54,7 +56,7 @@
             <li class="nav-item">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="icon-left">
-                  <i class="fa-solid fa-house" style="color: #d8fb4a;"></i>
+                  <i class="fa-solid fa-house fa-xl" style="color: #9723c9;"></i>
                 </div>
                 <div class="me-auto">
                 <div class="content-right">
@@ -66,7 +68,7 @@
             <li class="nav-item">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="icon-left">
-                  <i class="fa-solid fa-table-columns" style="color: #d8fb4a;"></i>
+                  <i class="fa-solid fa-table-columns fa-xl" style="color: #9723c9;"></i>
                 </div>
                 <div class="me-auto">
                 <div class="content-right">
@@ -79,7 +81,7 @@
             <li class="nav-item active">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="icon-left">
-                  <i class="fa-solid fa-table-columns" style="color: #d8fb4a;"></i>
+                  <i class="fa-solid fa-magnifying-glass-location fa-xl" style="color: #9723c9;"></i>
                 </div>
                 <div class="me-auto">
                 <div class="content-right">
@@ -92,7 +94,7 @@
             <li class="nav-item">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="icon-left">
-                  <i class="fa-solid fa-table-columns" style="color: #d8fb4a;"></i>
+                  <i class="fa-regular fa-calendar-plus fa-xl" style="color: #9723c9;"></i>
                 </div>
                 <div class="me-auto">
                 <div class="content-right">
@@ -105,7 +107,7 @@
             <li class="nav-item">
                <div class="d-flex justify-content-between align-items-center">
                 <div class="icon-left">
-                  <i class="fa-solid fa-table-columns" style="color: #d8fb4a;"></i>
+                  <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #9723c9;"></i>
                 </div>
                 <div class="me-auto">
                 <div class="content-right">
