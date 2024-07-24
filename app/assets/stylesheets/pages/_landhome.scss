@@ -1,11 +1,12 @@
 .landhome {
   width: 100vw;
   height: 100vh;
-  background-color: #8EBD9D;
+  background-color: #e3dff2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 30px;
 }
 
 .land-top {
@@ -16,16 +17,24 @@
   align-items: center;
 }
 
+.land-middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .land-top h1 {
   font-size: 35px;
-  color: #1B475D;
+  color: #000000;
 }
 
 .landhome-buttons label {
-  color: #1B475D;
+  color: #9723C9;
 }
 
-.landhome-buttons {
+.landhome-content {
+  width: 75%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,21 +45,14 @@
   margin-top: 30px;
 }
 
-.land-link {
+.landhome-yellow-buttons {
   width: 250px;
   height: 45px;
-  background-color: #FFF5D0;
   text-decoration: none;
-  color: #1B475D;
+  background-color: #D8FB4A;
   font-size: 20px;
-  border-radius: 10px;
-  font-size: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px;
-}
-
-.land-link:hover {
-  color: #7DB28B;
+  margin-bottom: 50px;
+  border: 4px solid #000;
+  border-radius: 5px;
+  box-shadow: 3px 3px 1px #000;
 }
