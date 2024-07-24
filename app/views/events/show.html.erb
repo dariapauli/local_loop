@@ -70,7 +70,8 @@
               <div class="avatar">
                 <%#  @event.users.each do |user| %>
                 <% if @profile && @profile.photo.present? %>
-                  <%= cl_image_path @profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;" %>
+                  <%= cl_image_tag @profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;" %>
+                  <%= link_to @profile.user.first_name, profile_path(user.profile)  %>
                 <% else %>
                   <%= image_tag "Default_pfp.jpg", class:"d-block", alt: "Default Profile Picture", style: "width: 50px; height: 50px;" %>
                 <% end %>
@@ -92,8 +93,6 @@
   </div>
 <% end %>
 <!-- CAROUSEL -->
-
-<%# raise %>
 
 <div>
   <%= button_to "Book Now!", participation_event_path(@event), data: {turbo_method: 'post', bs_toggle: "modal", bs_target: "#exampleModal" }, class:"btn-participate", disabled: @event.users.include?(current_user) %>
@@ -117,7 +116,7 @@
 
 <%= link_to "Back to search", search_events_path(@event)%>
   <div class="comments">
-    <h1>Comment</h1>
+    <h1>Comments</h1>
       <%= simple_form_for [@event, @comment] do |f| %>
       <%= f.input :content %>
       <%= f.submit "Send", class: "btn btn-primary" %>
