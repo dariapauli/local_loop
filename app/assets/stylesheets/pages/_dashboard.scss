@@ -16,6 +16,7 @@ body {
 .bookings-index h1 {
   color: #000;
   font-weight: 800;
+  font-family: "Poppins", sans-serif;
 }
 
 // HERE STARTS HEADERS
@@ -27,6 +28,10 @@ body {
 
 .clickable-headers {
   display: flex;
+  flex-direction: row;
+}
+
+.clickable-headers h4 {
   justify-content: space-between;
   padding: 30px;
 }
@@ -53,16 +58,23 @@ body {
   margin: 10px;
   padding: 7px;
   font-weight: 800;
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-family: "Poppins", sans-serif;
+  width: 43%;
+  height: 55%;
 }
 
 .dashboard-container h4 {
   color: #999;
   font-weight: 800;
   margin: 10px;
-  font-size: 1.2em;
+  padding: 7px;
+  font-size: 1.1em;
   display: flex;
   align-items: center;
+  font-family: "Poppins", sans-serif;
+  width: 43%;
+  height: 55%;
 }
 
 // EVENT CARDS
@@ -131,6 +143,7 @@ i {
   box-shadow: 4px 4px;
   padding: 7px;
   margin: 20px;
+  font-family: "Poppins", sans-serif;
 }
 
 .dashboard-custom-link {
