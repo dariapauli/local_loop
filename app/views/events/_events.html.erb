@@ -6,8 +6,8 @@
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
-  <div class="event-content">
-    <p class="text-purple">Filter Events</p>
+  <div class="events-content">
+    <p class="events-text-purple">Filter Events</p>
     <div class="dropdown-row d-flex flex-direction-row">
       <div class="dropdown-filters">
         <%= form_with(url: events_path, method: :get, class: "form-row",
@@ -31,7 +31,7 @@
 
     <div >
       <% if @events.present? %>
-        <p class="text"><%= @events.count %> events found</p>
+        <p class="events-text"><%= @events.count %> events found</p>
         <% @events.each do |event| %>
           <div class="event-cards">
             <div class="event-pic d-flex align-items-center">
