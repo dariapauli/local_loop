@@ -51,6 +51,10 @@
             <li class="nav-item">
               <%= link_to "Create Events", new_event_path, class: "nav-link" %>
             </li>
+            <%# our contacts %>
+            <li class="nav-item">
+              <%= link_to "Website Creators", contacts_path, class: "nav-link" %>
+            </li>
             <!-- log out -->
             <li class="nav-item">
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %> <%# change to logout %>
