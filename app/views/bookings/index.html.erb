@@ -43,12 +43,12 @@
                 </div>
               </div>
             <% end %>
-            <button>
+            <button class="button-green">
               <%= link_to "Have another idea?", new_event_path, class: "dashboard-custom-link" %>
             </button>
           <% else %>
             <p>Nothing to organize</p>
-            <button>
+            <button class="button-green">
               <%= link_to "Create Event", new_event_path, class: "dashboard-custom-link" %>
             </button>
 
@@ -100,12 +100,12 @@
                 </div>
               </div>
             <% end %>
-            <button>
+            <button class="button-green">
               <%= link_to "Craving more?", search_events_path, class: "dashboard-custom-link" %>
             </button>
           <% else %>
             <p>You have no upcoming events</p>
-            <button>
+            <button class="button-green">
               <%= link_to "Search events", search_events_path, class: "dashboard-custom-link" %>
             </button>
             <%# !!! SHOW PAST EVENTS? !!!!! %>
