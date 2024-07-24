@@ -1,0 +1,32 @@
+.pw-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: #e3dff2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+
+.pw-page-yellow-button {
+  width: 320px;
+  height: 45px;
+  text-decoration: none;
+  background-color: #D8FB4A;
+  font-size: 20px;
+  margin-bottom: 50px;
+  border: 4px solid #000;
+  border-radius: 5px;
+  box-shadow: 3px 3px 1px #000;
+  display: flex;
+  justify-content: center; /* Horizontal zentrieren */
+  align-items: center;
+}
+
+.pw-page-content {
+  font-family: "Work Sans", sans-serif;
+  text-align: left;
+  font-weight: 600;
+}
