@@ -1,12 +1,15 @@
 <div class="event-show">
-  <div class="card-category"
-          <% if @event.photo && @event.photo.key %>
-            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-            url('<%= cl_image_path @event.photo.key, class:"show-img" %>')">
-          <% else %>
-          <%= image_tag "event.jpg", alt: "train", width: 200 %>
-        <% end %>
-      </div>
+
+  <% if @event.photo && @event.photo.key %>
+    <div class="card-category"style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+            url('<%= cl_image_path @event.photo.key, class:"show-img" %>')"></div>
+  <% else %>
+    <div class="card-category">
+      <%= image_tag "event.jpg", alt: "train", width: 200 %>
+    </div>
+
+  <% end %>
+
 
   <div class="event-content">
 
@@ -26,7 +29,7 @@
       <div class="event-data">
         <div class="red-dot"></div>
         <p>Location: <%= @event.address %></p>
-        </div>
+      </div>
 
       <div class="event-data">
         <div class="red-dot"></div><p><%= @event.date.strftime("%A, %B %d, %Y") %></p>
@@ -38,22 +41,22 @@
 
       <div class="event-image">
          <% if @organizer.present? %>
-        <% if current_user == @organizer  %>
-          <% if @profile && @profile.photo.present? %>
-            <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "") %>
-          <% else %>
-            <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
-        <% end %>
-          <p>You</p>
-        <% else %>
-        <% if @profile && @profile.photo.present? %>
-          <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
-        <% else %>
-          <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
-        <% end %>
-          <p>organized by: </p>
-        <% end %>
-      <% end %>
+            <% if current_user == @organizer  %>
+              <% if @profile && @profile.photo.present? %>
+                <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "") %>
+              <% else %>
+                <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+              <% end %>
+              <p>You</p>
+            <% else %>
+              <% if @profile && @profile.photo.present? %>
+                <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
+              <% else %>
+                <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+              <% end %>
+              <p>organized by: </p>
+            <% end %>
+          <% end %>
       </div>
 
     </div>
@@ -88,16 +91,16 @@
       <% if @profile && @profile.photo.present? %>
         <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
         <p><%= @organizer.first_name %></p>
+      <% end %>
+    <% end %>
+
+
+    <% if @event.organizer == current_user %>
+      <%= link_to "Edit",
+        edit_event_path(@event), class: "show-edit"%>
     <% end %>
   <% end %>
-      
 
-      <% if @event.organizer == current_user %>
-        <%= link_to "Edit",
-          edit_event_path(@event), class: "show-edit"%>
-      <% end %>
-
-      
   <%# WORKING HERE %>
 
 
@@ -170,11 +173,11 @@
   <div class="comments">
     <h1>Post Something:</h1>
       <%= simple_form_for [@event, @comment] do |f| %>
-      <%= f.input :content %>
-      <%= f.submit "Send", class: "btn btn-primary" %>
-  <% end %>
-</div>
-<div class="comments-view">
+        <%= f.input :content %>
+        <%= f.submit "Send", class: "btn btn-primary" %>
+      <% end %>
+  </div>
+  <div class="comments-view">
   <ul>
     <% @comments.each do |c| %>
 
@@ -185,5 +188,6 @@
     <% end %>
   </ul>
 
+</div>
 </div>
 </div>
