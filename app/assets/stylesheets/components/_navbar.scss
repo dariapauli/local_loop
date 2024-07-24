@@ -28,7 +28,7 @@
 .navbar-logo {
   width: 50px;
   margin-left: 100px;
-  margin-right: 90px;
+  margin-right: 80px;
 }
 
 .navbar-toggler {
@@ -44,8 +44,9 @@
 
 .navbar-nav{
   border: 3px solid #000000;
+  border-radius: 7px;
   padding: 5px;
-  height: 90vh;
+  height: 94vh;
 }
 
 .nav-item {
@@ -56,17 +57,45 @@
   margin-bottom: 25px;
 }
 
+.nav-item.dropdown {
+  justify-content: space-between;
+  padding-left: 5px;
+  background-color: #FFFFFF;
+}
+
+.navbar-link {
+  margin-top: 50px;
+  border: 2px solid #a211d2;
+}
 .content-right {
   font-family: 'Poppins';
   font-size: 22px;
   font-weight: bolder;
   padding-left: 50px;
+  border: 2px solid #1131d2;
+}
+
+.content-right a {
+  font-family: 'Poppins';
+  font-size: 22px;
+  color:#000000;
+  font-weight: bolder;
+  border: 2px solid #d27b11;
 }
 
 .icon-left {
   padding-left: 50px;
+  border: 2px solid #11d251;
 }
 
-.navbar-link {
-  margin-top: 100px;
+.font-name {
+  font-family: 'Poppins';
+  font-size: 22px;
+  font-weight: bolder;
+}
+
+.font-email {
+  font-family: 'Poppins';
+  font-size: 18px;
+  font-weight:lighter;
 }
