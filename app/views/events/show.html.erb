@@ -18,7 +18,7 @@
   <% if @organizer.present? %>
     <% if current_user == @organizer  %>
       <% if @profile && @profile.photo.present? %>
-        <%= cl_image_path @profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;" %>
+        <%= cl_image_path(@event.user.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
       <% else %>
         <%= image_tag "Default_pfp.jpg", class:"d-block", alt: "Default Profile Picture", style: "width: 50px; height: 50px;" %>
       <% end %>
@@ -26,7 +26,7 @@
       <%# = cl_image_path current_user.profile.photo.key, class: "organizer_picture" %>
     <% else %>
       <% if @profile && @profile.photo.present? %>
-        <%= cl_image_path @profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;" %>
+        <%= cl_image_path(@event.user.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
       <% else %>
         <%= image_tag "Default_pfp.jpg", class:"d-block", alt: "Default Profile Picture", style: "width: 50px; height: 50px;" %>
       <% end %>
