@@ -1,6 +1,5 @@
 <div class="bookings-index">
-  <h1 class="m-3">My Dashboard</h1>
-  <h4 class="greeting-bold m-3">Hey <%= @user.first_name %>!</h4>
+  <h1 class="greeting-bold m-3">Hey <%= @user.first_name %>!</h1>
   <p class="m-3">Looking for your events?</p>
 
   <div class="dashboard-container" data-controller="bookings">
@@ -17,7 +16,7 @@
                 <div class="list-event d-flex flex-direction-row">
                   <div class="dash-pic">
                     <% if event.photo.attached? %>
-                      <%= cl_image_tag event.photo.key, class: "card-image", height: 110,  crop: :fill %>
+                      <%= cl_image_tag event.photo.key, class: "card-image", height: 110, width: 110,  crop: :fill %>
                     <% else %>
                       <%= image_tag "event.jpg", alt: "event-default", width: 200 %>
                     <% end %>
@@ -28,6 +27,8 @@
                       <% if event.date.present? %>
                         <i class="fa-regular fa-calendar-days"> </i> <%= event.date.strftime("%A, %B %d, %Y") %>
                       <% end %>
+                    </div>
+                    <div>
                       <i class="fa-regular fa-clock"></i> <%= event.time.strftime("%I:%M %p") %>
                     </div>
                     <div>
@@ -36,9 +37,9 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="ellipsis">
+                  <%# <div class="ellipsis border border-danger">
                     <i class="fa-solid fa-ellipsis-vertical"></i>
-                  </div>
+                  </div> %>
                 </div>
               </div>
             <% end %>
@@ -58,14 +59,14 @@
       </div>
 
       <div id="booked-events" >
-        <div data-bookings-target="participationBox" class="participation-box">
+        <div data-bookings-target="participationBox" class="eventbox">
           <% if @my_participations.any? %>
             <% @my_participations.each do |event| %>
               <div class="event-card">
                 <div class="list-event d-flex flex-direction-row">
                   <div class="dash-pic">
                     <% if event.photo.attached? %>
-                      <%= cl_image_tag event.photo.key, class: "card-image", height: 110,  crop: :fill %>
+                      <%= cl_image_tag event.photo.key, class: "card-image", height: 110, width: 110, crop: :fill %>
                     <% else %>
                       <%= image_tag "event.jpg", alt: "event-default", width: 200 %>
                     <% end %>
@@ -74,6 +75,8 @@
                     <h3 class="title-event"><%= link_to event.name, event_path(event), class: "dashboard-custom-link" %></h3>
                     <div>
                       <i class="fa-regular fa-calendar-days"></i> <%= event.date.strftime("%A, %B %d, %Y") %>
+                    </div>
+                    <div>
                       <i class="fa-regular fa-clock"></i> <%= event.time.strftime("%I:%M %p")  %>
                     </div>
                     <div>
@@ -82,18 +85,18 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="price-box float-right">
+                  <%# <div class="price-box">
                     <% if event.price == 0 %>
-                      <p class="price-green">Free</p>
-                    <% else %>
-                      <p class="price-purple">
-                        <%= number_to_currency(event.price, unit: "€") %>
-                      </p>
-                    <% end %>
-                  </div>
-                  <div class="ellipsis">
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                  </div>
+                      <%# <p class="price-green">Free</p> %>
+                    <%# <% else %>
+                      <%# <p class="price-purple"> %>
+                        <%# <%= number_to_currency(event.price, unit: "€") %>
+                      <%# </p> %>
+                    <%# <% end %>
+                  <%# </div> %>
+                  <%# <div class="ellipsis border border-danger"> %>
+                    <%# <i class="fa-solid fa-ellipsis-vertical"></i> %>
+                  <%# </div> %>
                 </div>
               </div>
             <% end %>
