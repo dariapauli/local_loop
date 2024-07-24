@@ -35,3 +35,14 @@
   border: none;
   outline: none;
 }
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-nav{
+  border: 3px solid #000000;
+  
+
+}
