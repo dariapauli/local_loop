@@ -9,11 +9,11 @@
 
     <% end %>
   </div>
-  <%= simple_form_for [@chatroom, @message], html: {class: "d-flex"} do |f| %>
+  <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
   <%= f.input :message_content,
     label:false,
     placeholder: "Your Message",
-    wrapper_html: { class: "d-flex-grow-1"} %>
-    <%= f.submit "Send", class: "btn btn-primary" %>
+    class: "message-chat" %>
+    <%= f.submit "Send", class: "btn btn-chat" %>
   <% end %>
 </div>
