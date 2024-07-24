@@ -39,25 +39,28 @@
          <% if @organizer.present? %>
         <% if current_user == @organizer  %>
           <% if @profile && @profile.photo.present? %>
-            <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "") %>
+            <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "carrousel-image") %>
           <% else %>
-            <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+            <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "carrousel-image" %>
         <% end %>
           <p>You</p>
         <% else %>
         <% if @profile && @profile.photo.present? %>
-          <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
+          <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", class: "carrousel-image") %>
+          <p class="organizer-text"><%= @organizer.first_name %></p>
         <% else %>
-          <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+          <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "organizer-img" %>
+           <p class="organizer-text"><%= @organizer.first_name %></p>
         <% end %>
-          <p>organized by: </p>
+          <p class="image-text">is the host </p>
         <% end %>
       <% end %>
       </div>
 
     </div>
     <div class="event-card">
-       <p>Description: <%= @event.description %></p>
+       <p class="image-text">Description: </p>
+       <%= @event.description %>
         <% if @event.organizer == current_user %>
           <%= link_to "Delete",
           event_path(@event),
@@ -81,7 +84,7 @@
 
 
 <!-- CAROUSEL -->
-<h2>Who else already joined? </h2>
+<h2 class="events-headers">Who else already joined? </h2>
 <% if @participants.present? %>
   <div id="participantsCarousel" class="carousel slide" data-ride="carousel" >
     <div class="carousel-inner">
@@ -92,10 +95,10 @@
               <div class="avatar">
                 <%#  @event.users.each do |user| %>
                 <% if @profile && @profile.photo.present? %>
-                  <%= cl_image_tag @profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;" %>
-                  <%= link_to @profile.user.first_name, profile_path(user.profile)  %>
+                  <%= cl_image_tag @profile.photo.key, class:"d-block card-img" %>
+                  <%= link_to @profile.user.first_name, profile_path(user.profile), class:"name-card"  %>
                 <% else %>
-                  <%= image_tag "Default_pfp.jpg", class:"d-block", alt: "Default Profile Picture", style: "width: 50px; height: 50px;" %>
+                  <%= image_tag "Default_pfp.jpg", class:"d-block carrousel-image", alt: "Default Profile Picture" %>
                 <% end %>
               </div>
             <% end %>
@@ -116,8 +119,12 @@
 <% end %>
 <!-- CAROUSEL -->
 
-<div>
+<div class="event-buttons">
+  <%= link_to "Back to search", search_events_path(@event), class:"btn-search"%>
   <%= button_to "Book Now!", participation_event_path(@event), data: {turbo_method: 'post', bs_toggle: "modal", bs_target: "#exampleModal" }, class:"btn-participate", disabled: @event.users.include?(current_user) %>
+</div>
+
+
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -135,8 +142,8 @@
       </div>
     </div>
   </div>
-<%= link_to "Back to search", search_events_path(@event)%>
-  </div>
+
+
 
 
 
@@ -144,18 +151,20 @@
 <!-- Comments -->
 
   <div class="comments">
-    <h1>Post Something:</h1>
+    <h1 class="events-headers">Post Something:</h1>
+    <div class="comments-input">
       <%= simple_form_for [@event, @comment] do |f| %>
-      <%= f.input :content %>
-      <%= f.submit "Send", class: "btn btn-primary" %>
-  <% end %>
+        <%= f.input :content %>
+        <%= f.submit "Send", class: "btn-comments" %>
+      <% end %>
+    </div>
+
 </div>
 <div class="comments-view">
   <ul>
     <% @comments.each do |c| %>
-
-    <li>
-      <%= cl_image_tag @profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;" %>
+    <li class="items-comments">
+      <%= cl_image_tag @profile.photo.key, class:"d-block show-img" %>
       <%= @profile.user.first_name %>
       <%= c.content %></li>
     <% end %>
