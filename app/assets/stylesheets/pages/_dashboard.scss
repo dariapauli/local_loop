@@ -1,6 +1,7 @@
 // HERE STARTS ENTIRE CONTAINER
 body {
   background-color: #F5F5F5;
+  border: 2px solid black;
 }
 
 .bookings-index {
@@ -15,6 +16,7 @@ body {
 .bookings-index h1 {
   color: #000;
   font-weight: 800;
+  font-family: "Poppins", sans-serif;
 }
 
 // HERE STARTS HEADERS
@@ -26,6 +28,10 @@ body {
 
 .clickable-headers {
   display: flex;
+  flex-direction: row;
+}
+
+.clickable-headers h4 {
   justify-content: space-between;
   padding: 30px;
 }
@@ -52,16 +58,23 @@ body {
   margin: 10px;
   padding: 7px;
   font-weight: 800;
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-family: "Poppins", sans-serif;
+  width: 43%;
+  height: 55%;
 }
 
 .dashboard-container h4 {
   color: #999;
   font-weight: 800;
   margin: 10px;
-  font-size: 1.2em;
+  padding: 7px;
+  font-size: 1.1em;
   display: flex;
   align-items: center;
+  font-family: "Poppins", sans-serif;
+  width: 43%;
+  height: 55%;
 }
 
 // EVENT CARDS
@@ -111,27 +124,6 @@ i {
   color: #F65751;
 }
 
-.price-box {
-  // width: 10vh;
-  height: 30px;
-  text-align: center;
-  font-weight: 500;
-  margin: 5px 0px 5px 5px;
-  border: 3px solid black;
-  border-radius: 9px 0px 0px 9px;
-  position: relative;
-  right: 0;
-}
-
-.price-green {
-  background-color: #D8FB4A;
-  border-radius: 9px 0px 0px 9px;
-}
-
-.price-purple {
-  background-color: #E3DFF2 ;
-  border-radius: 9px 0px 0px 9px;
-}
 
 .ellipsis {
   display: flex;
@@ -143,8 +135,7 @@ i {
   margin-right: 0;
 }
 
-
-button {
+.button-green {
   background-color: #D8FB4A;
   color: #000;
   border: 3px solid black;
@@ -152,6 +143,7 @@ button {
   box-shadow: 4px 4px;
   padding: 7px;
   margin: 20px;
+  font-family: "Poppins", sans-serif;
 }
 
 .dashboard-custom-link {

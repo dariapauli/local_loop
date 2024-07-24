@@ -20,10 +20,11 @@ Rails.application.routes.draw do
 
   resources :bookings, only: :index
 
+  resources :contacts, only: :index
+
   resources :events, only: :show do
     member do
       post :participation
     end
   end
-
 end

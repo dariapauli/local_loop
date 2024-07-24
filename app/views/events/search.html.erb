@@ -1,17 +1,20 @@
-<div>
-  <h1>Search an event near you</h1>
+<div class="search-page">
+  <h1>Spot your nearest event</h1>
 
-  <%= simple_form_for :search, url: events_path, method: :get, html: { class: 'search-form' } do |f| %>
+  <%= simple_form_for :search, url: events_path, method: :get, html: { class: 'search-form', autocomplete: 'off' } do |f| %>
     <div>
-      <%= f.input :postcode, placeholder: "Enter postcode (E.g. 70713)", input_html: { class: "form-control", required: true, pattern: "\\d{5}", title: "Postcode must be 5 digits" } %>
+      <%= f.input :postcode, placeholder: "E.g. 10115", input_html: { class: "form-control custom-input", required: true, pattern: "\\d{5}", title: "Postcode must be 5 digits" } %>
     </div>
 
     <div>
-      <%= f.input :city, placeholder: "Enter city (E.g. Stuttgart)", input_html: { class: "form-control" } %>
+      <%= f.input :city, placeholder: "E.g. Berlin", input_html: { class: "form-control custom-input" } %>
     </div>
 
     <div>
-      <%= f.button :submit, "Search", class: "btn btn-primary" %>
+      <%= f.button :submit, "Search", class: "btn landhome-yellow-buttons" %>
+    </div>
+    <div class="search-yellow-button">
+      <%= link_to "Back to menu", landhome_path, class: "btn landhome-yellow-buttons" %>
     </div>
   <% end %>
 </div>

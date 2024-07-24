@@ -1,0 +1,89 @@
+.form-new {
+  background-color: #FFFBAE;
+}
+
+.form-new h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+}
+
+.edit-event {
+  background-color: #FFFBAE;
+  padding: 48px;
+}
+
+.edit-event h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+}
+
+.profile-edit {
+  background-color: #FFFBAE;
+  padding: 48px;
+  font-family: "Work Sans", sans-serif;
+}
+
+.edit_profile {
+  margin-top: 30px;
+}
+
+.profile-edit h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+}
+
+// FORM
+
+.form-control {
+  background-color: #FFFFFF;
+  border: 3px solid black;
+  border-radius: 7px;
+  box-shadow: 4px 4px;
+}
+
+label {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
+}
+
+.form-input {
+  background-color: #FFFFFF;
+  color: #000;
+  border: 3px solid black;
+  border-radius: 7px;
+}
+
+.form-textarea {
+  background-color: #FFFFFF;
+  color: #000;
+  margin: 0;
+}
+
+.form-select {
+  background-color: #FFFFFF;
+  color: #000;
+  border: 3px solid black;
+  border-radius: 7px;
+  box-shadow: 4px 4px;
+}
+
+
+// OUTSIDE FORM
+
+.button-red {
+  text-decoration: none;
+  color: black;
+  background-color: #F65751;
+  border: 3px solid black;
+  border-radius: 7px;
+  box-shadow: 4px 4px;
+  margin: 20px;
+  padding: 7px;
+  font-weight: 400;
+}
+
+.mother-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

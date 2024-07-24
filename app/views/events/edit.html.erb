@@ -1,7 +1,8 @@
-<h2>Do you need to make some changes to your event?</h2>
+<div class="edit-event">
+  <h2>Do you need to make some changes to your event?</h2>
 
   <div class="new-offer">
-    <%= simple_form_for @event, html: { multipart: true } do |f| %>
+    <%= simple_form_for @event, html: { multipart: true, autocomplete: 'off'  } do |f| %>
       <%= f.input :name, { class: "label-dark" }%>
       <%= f.input :description %>
       <%= f.input :address, presence: true, format: { with: /\A([^<>{}\\]|\s)+\z/, message: "Address can't be blank or contain special characters <>, {, }, or \" " } %>
@@ -23,4 +24,4 @@
       </ul>
     </div>
   <% end %>
-
+</div>

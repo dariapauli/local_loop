@@ -1,12 +1,15 @@
 <div class="event-show">
-  <div class="card-category"
-          <% if @event.photo && @event.photo.key %>
-            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-            url('<%= cl_image_path @event.photo.key, class:"show-img" %>')">
-          <% else %>
-          <%= image_tag "event.jpg", alt: "train", width: 200 %>
-        <% end %>
-      </div>
+
+  <% if @event.photo && @event.photo.key %>
+    <div class="card-category"style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+            url('<%= cl_image_path @event.photo.key, class:"show-img" %>')"></div>
+  <% else %>
+    <div class="card-category">
+      <%= image_tag "event.jpg", alt: "train", width: 200 %>
+    </div>
+
+  <% end %>
+
 
   <div class="event-content">
 
@@ -22,10 +25,11 @@
         </div>
       </div>
 
+
       <div class="event-data">
         <div class="red-dot"></div>
         <p>Location: <%= @event.address %></p>
-        </div>
+      </div>
 
       <div class="event-data">
         <div class="red-dot"></div><p><%= @event.date.strftime("%A, %B %d, %Y") %></p>
@@ -37,6 +41,7 @@
 
       <div class="event-image">
          <% if @organizer.present? %>
+<<<<<<< HEAD
         <% if current_user == @organizer  %>
           <% if @profile && @profile.photo.present? %>
             <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "carrousel-image") %>
@@ -55,6 +60,24 @@
           <p class="image-text">is the host </p>
         <% end %>
       <% end %>
+=======
+            <% if current_user == @organizer  %>
+              <% if @profile && @profile.photo.present? %>
+                <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "") %>
+              <% else %>
+                <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+              <% end %>
+              <p>You</p>
+            <% else %>
+              <% if @profile && @profile.photo.present? %>
+                <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "navbar-image") %>
+              <% else %>
+                <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
+              <% end %>
+              <p>organized by: </p>
+            <% end %>
+          <% end %>
+>>>>>>> master
       </div>
 
     </div>
@@ -69,16 +92,39 @@
     </div>
 
 
-      <% if @booking.nil? %>
-        <% disabled = "" %>
-      <% else %>
+    <% if @booking.nil? %>
+      <% disabled = "" %>
+    <% else %>
         <% disabled = "disabled" %>
       <% end %>
 
-      <% if @event.organizer == current_user %>
-        <%= link_to "Edit",
-          edit_event_path(@event), class: "show-edit"%>
+  <%# WORKING HERE %>
+  <% if @organizer.present? %>
+    <% if current_user == @organizer  %>
+      <!-- if the user is the organizer, show picture + name of current user -->
+      <% if @profile && @profile.photo.present? %>
+        <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
+      <% else %>
+        <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
       <% end %>
+      <p>You</p>
+    <% else %>
+    <!-- if the user is not the organizer, show picture + name of the organizer -->
+      <% if @profile && @profile.photo.present? %>
+        <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
+        <p><%= @organizer.first_name %></p>
+      <% end %>
+    <% end %>
+
+
+    <% if @event.organizer == current_user %>
+      <%= link_to "Edit",
+        edit_event_path(@event), class: "show-edit"%>
+    <% end %>
+  <% end %>
+
+  <%# WORKING HERE %>
+
 
 
 
@@ -135,7 +181,7 @@
           <p>You are successfully registered, see you there!</p>
         </div>
         <div class="modal-footer border-0">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= link_to "Ok, Thanks", event_path(@event), class:"btn" %></button>
+          <button type="button" class="btn btn-secondary show-button-ok-thanks" data-bs-dismiss="modal"><%= link_to "Ok, Thanks", event_path(@event), class:"btn" %></button>
           <%= link_to "Go to dashboard", bookings_path, class:"a-link" %>
         </div>
 
@@ -170,5 +216,6 @@
     <% end %>
   </ul>
 
+</div>
 </div>
 </div>

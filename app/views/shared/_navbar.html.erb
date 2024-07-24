@@ -18,15 +18,13 @@
             <!-- profile dropdown -->
             <li class="nav-item dropdown">
               <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <% if @profile.present? %>
+                <% if current_user.profile.present? %>
                 <!-- profile avatar -->
-                  <% if @profile.photo.present? %>
-                    <%= cl_image_tag(@profile.photo.key, transformation: { width: 50, height: 50, crop: :fill }, alt: "Profile Picture")  %>
+                  <% if current_user.profile.photo.present? %>
+                    <%= cl_image_tag current_user.profile.photo.key, alt: "Profile Picture", class: "navbar-image"%>
                   <% else %>
                     <%= image_tag "default_avatar.png", alt: "Default Profile Picture", class: "navbar-image" %>
                   <% end %>
-                <% else %>
-                  <%= image_tag "default_avatar.png", class: "avatar", alt: "dropdown menu", class: "navbar-image" %>
                 <% end %>
                 <!-- profile name and email -->
               </a>
@@ -52,6 +50,10 @@
             <!-- create events -->
             <li class="nav-item">
               <%= link_to "Create Events", new_event_path, class: "nav-link" %>
+            </li>
+            <%# our contacts %>
+            <li class="nav-item">
+              <%= link_to "Website Creators", contacts_path, class: "nav-link" %>
             </li>
             <!-- log out -->
             <li class="nav-item">
