@@ -9,10 +9,14 @@
 #   end
 
 require "open-uri"
-
+Message.delete_all
+Chatroom.delete_all
+Comment.delete_all
+Booking.delete_all
 Event.delete_all
 Profile.delete_all
 User.delete_all
+
 
 u1 = User.create!(email: 'jacob@example.com', password: 'password', first_name: 'Jacob')
 filee1 = URI.open("https://images.pexels.com/photos/1036627/pexels-photo-1036627.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
