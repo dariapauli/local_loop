@@ -71,16 +71,73 @@
 .event-show {
   width: 100vw;
   height: 100vh;
+  background-color: #FFFFFF;
 }
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin-left: 18px;
+}
+
+.event-card {
+  width: 85%;
+  min-height: fit-content;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #000;
+  box-shadow: 4px 4px;
+  margin-top: 10px;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-top h1 {
+  font-family: "Poppins", sans-serif;
+  width: 70%;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.card-top .price {
+  width: 23%;
+  height: 28px;
+  background-color: #D8FB4A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  border-radius: 8px;
+}
+
+.event-data {
+  display: flex;
+  font-family: "Work Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 
 .card-category {
-  width: 100%;
-  height: 45%;
+  max-width: 100%;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-right: 3px solid #000;
+  border-left: 3px solid #000;
+  border-bottom: 3px solid #000;
+  margin-bottom: 3px;
 }
 
-.show-image {
-  width: 25%;
-}
 
 .btn-bookings {
   border: none;
@@ -95,4 +152,17 @@
   padding: 10px;
   padding-inline: 15px;
   border-radius: 8px;
+}
+
+.red-dot {
+  width: 11px;
+  height: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(235, 80, 29);
+  border-radius: 50%;
+  box-shadow: 3px 3px 2px #000;
+  margin-right: 8px;
+  margin-top: 5px;
 }
