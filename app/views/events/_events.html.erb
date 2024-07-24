@@ -30,9 +30,15 @@
         <p class="text-blue"><%= @events.count %> events found</p>
         <% @events.each do |event| %>
           <div class="event-cards">
+            <div class="event-pic">
+              <% if event.photo.attached? %>
+                <%= cl_image_tag event.photo.key, class: "card-image", height: 110,  crop: :fill %>
+              <% else %>
+                <%= image_tag "event.jpg", alt: "event-default", width: 200 %>
+              <% end %>
+            </div>
             <div class="text-container">
               <h2><%= link_to event.name, event_path(event), class: "link-underline-opacity-0" %></h2>
-              <p><%= event.description %></p>
               <div class="flex-direction-row mb-2">
                 <i class="fa-solid fa-location-dot"></i>
                 <%= event.address %>

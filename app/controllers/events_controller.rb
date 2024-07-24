@@ -24,7 +24,7 @@ class EventsController < ApplicationController
         end
 
         if params[:price].present?
-          if params[:price] == “0”
+          if params[:price] == "0"
             @events = @events.with_price(params[:price])
           else
             prices = params[:price].split("..").map {|number| number.to_f}
