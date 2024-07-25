@@ -83,9 +83,7 @@
           <%= simple_form_for Chatroom.new do |f| %>
             <%= f.input :receiver_id, input_html: { class:"d-none", value: @profile.user.id } %>
             <%= f.input :sender_id, input_html: { class:"d-none", value: current_user.id } %>
-            <button class="chatroom-button">
-              <%= f.submit %>
-            </button>
+              <%= f.submit "Start chat", class: "button-green" %>
           <% end %>
         </div>
       <% end %>
