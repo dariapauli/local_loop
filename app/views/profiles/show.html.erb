@@ -8,9 +8,9 @@
       <% end %>
     </div>
 
-    <div class="profile-picture-round">
+    <div class="profile-pic-show">
       <% if @profile.photo.present? %>
-        <%= cl_image_tag @profile.photo.key, class:"profile-pic" %>
+        <%= cl_image_tag @profile.photo.key, class:"profile-pic-square" %>
       <% else %>
         <%= image_tag "Default_pfp.jpg", alt: "Default Profile Picture", class:"profile-pic" %>
       <% end %>
