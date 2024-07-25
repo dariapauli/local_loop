@@ -23,16 +23,17 @@
       <% end %>
     </div>
 
-    <div class="profile-info">
+    <div class="profile-info d-flex flex-direction-row">
       <% if @profile.birthdate.present? %>
-        <div class="profile-age profile-text">
+        <div class="profile-age profile-text flex-grow-1 align-items-center">
           <% age = Time.now.year - @profile.birthdate.year - ((Time.now.month > @profile.birthdate.month || (Time.now.month == @profile.birthdate.month && Time.now.day >= @profile.birthdate.day)) ? 0 : 1) %>
-          <p>Age: <%= age %></p>
+          <p class="text-bold">Age: </p>
+          <p class="text-normal"> <%= age %></p>
         </div>
       <% end %>
       <% if @profile.city.present? %>
         <div class="profile-city profile-text">
-          <p><i class="fa-solid fa-location-dot"></i> <%= @profile.city %></p>
+          <p class="text-normal"><i class="fa-solid fa-location-dot"></i> <%= @profile.city %></p>
         </div>
         <% end %>
     </div>
@@ -40,11 +41,11 @@
 
     <% if @profile.bio.present? %>
       <div class="profile-text text-long">
-        <p>Bio</p>
+        <p class="text-bold">Bio</p>
         <%= @profile.bio %>
     <% end %>
     <% if @profile.interests.present? %>
-        <p>Interests</p>
+        <p class="text-bold">Interests</p>
         <%= @profile.interests %>
       </div>
     <% end %>
@@ -52,7 +53,7 @@
   <% if @events.count == 1 %>
     <p>1 event created</p>
   <% else %>
-    <p><%= @events.count %>events created</p>
+    <p><%= @events.count %> events created</p>
   <% end %>
   <%# <div class="profile-events">
     <% @events.each do |event| %>
