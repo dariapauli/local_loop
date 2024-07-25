@@ -54,7 +54,6 @@
           <p><%= link_to @organizer.first_name, profile_path(@organizer.profile), class:"organizer-text" %></p>
         <% else %>
           <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "organizer-img" %>
-           <p class="organizer-text"><%= @organizer.first_name %></p>
            <p><%= link_to @organizer.first_name, profile_path(@organizer.profile), class:"organizer-text" %></p>
         <% end %>
           <p class="image-text">is the host </p>
