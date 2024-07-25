@@ -103,9 +103,18 @@
                 </div>
               </div>
             </li>
-            <%# our contacts %>
+           <!-- our contacts -->
             <li class="nav-item">
-              <%= link_to "Website Creators", contacts_path, class: "nav-link" %>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="icon-left">
+                  <i class="fa-solid fa-hand-holding-hand fa-xl" style="color: #9723c9;"></i>
+                </div>
+                <div class="me-auto">
+                <div class="content-right">
+                  <%= link_to "The creators", contacts_path, class: "nav-link" %>
+                </div>
+                </div>
+              </div>
             </li>
             <!-- log out -->
             <li class="nav-item">
