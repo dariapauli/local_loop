@@ -233,6 +233,38 @@
   margin-top: -13px;
 }
 
+.youcreator {
+  text-decoration: none;
+  font-family: "Work Sans", sans-serif;
+  color: #9723C9;
+  font-size: 18px;
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+.edit-delete {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 65px;
+}
+
+.show-delete {
+  font-size: 25px;
+}
+
+.show-edit {
+  text-decoration: none;
+  color: #F65751;
+  font-family: "Work Sans", sans-serif;
+}
+.delete-event {
+  text-decoration: none;
+  color: #F65751;
+  margin-right: 10px;
+  font-family: "Work Sans", sans-serif;
+}
+
 .carousel {
   background-color: #E3DFF2;
   border: 3px solid #000;
@@ -312,16 +344,12 @@
 
 .comments-view {
   width: 100%;
-  margin-top: 10px;
-  border-radius: 8px;
-  padding: 5px;
-  border: 3px solid #000;
-  box-shadow: 3px 3px 1px #000;
 }
 
 .items-comments {
   display: flex;
-  align-items: center;
+  margin-top: 10px;
+  border-bottom: 3px solid #000;
 }
 
 .show-img {
@@ -329,5 +357,28 @@
   height: 50px;
   background-position: center;
   background-size: cover;
+}
 
+.comments-img {
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 1px #000;
+  margin-right: 10px;
+}
+
+.comment-name {
+  font-family: "Work Sans", sans-serif;
+  color: #9723C9;
+  font-weight: 600;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.comments-text {
+  display: flex;
+  flex-direction: column;
 }
