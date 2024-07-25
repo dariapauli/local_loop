@@ -118,7 +118,6 @@
   background-color: #D8FB4A;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-top: 5px;
   font-family: "Work Sans", sans-serif;
   font-weight: 700;
@@ -152,7 +151,7 @@
 
 .event-buttons {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -165,13 +164,16 @@
   border: 3px solid #000;
   box-shadow: 3px 3px 1px #000;
   width: 150px;
+  margin-left: 70px;
+  height: 40px;
+  margin-top: 10px;
 }
 
 .btn-search {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 45px;
+  height: 40px;
   font-family: "Work Sans", sans-serif;
   font-weight: 600;
   color: #fff;
@@ -181,6 +183,7 @@
   box-shadow: 3px 3px 1px #000;
   width: 150px;
   text-decoration: none;
+  margin-top: 10px;
 }
 
 .red-dot {
@@ -249,8 +252,10 @@
 }
 
 .events-headers {
+  font-size: 34px;
   font-family: "Poppins", sans-serif;
-  font-weight: 900;
+  font-weight: 650;
+  margin-top: 15px;
 }
 
 .carrousel-image {
@@ -268,6 +273,7 @@
   margin-left: 10px;
   margin-right: 5px;
   color: #9723C9;
+  text-decoration: none;
 }
 
 .name-card {
@@ -281,10 +287,20 @@
 
 // Comments area
 
+.comments {
+  width: 100%;
+}
+
+
+.comments-input {
+  width: 100%;
+}
+
 .comments-input textarea{
   border: 3px solid #000;
   border-radius: 8px;
   box-shadow: 3px 3px 1px #000;
+  width: 100%;
 }
 
 .btn-comments {
