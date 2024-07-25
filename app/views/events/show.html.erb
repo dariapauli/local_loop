@@ -179,7 +179,7 @@
     <h1 class="events-headers">Post Something:</h1>
     <div class="comments-input">
       <%= simple_form_for [@event, @comment] do |f| %>
-        <%= f.input :content %>
+        <%= f.input :content, label: false %>
         <%= f.submit "Send", class: "btn-comments" %>
       <% end %>
     </div>
