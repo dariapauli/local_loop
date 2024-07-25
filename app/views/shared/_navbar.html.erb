@@ -13,51 +13,121 @@
       <i class="fa-sharp fa-solid fa-bars" style="color: #9723c9;"></i>
     </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
+        <ul class="navbar-nav me-auto d-flex justify-content-center">
           <% if user_signed_in? %>
             <!-- profile dropdown -->
-            <li class="nav-item dropdown">
-              <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <% if current_user.profile.present? %>
-                <!-- profile avatar -->
-                  <% if current_user.profile.photo.present? %>
-                    <%= cl_image_tag current_user.profile.photo.key, alt: "Profile Picture", class: "navbar-image"%>
-                  <% else %>
-                    <%= image_tag "default_avatar.png", alt: "Default Profile Picture", class: "navbar-image" %>
-                  <% end %>
-                <% end %>
+            <li class="nav-info dropdown">
+              <li class="nav-info">
+                <div class="d-flex justify-content-between align-items-center">
+                <div class="avatar-container">
+                  <div class="icon-avatar">
+                    <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <% if current_user.profile.present? %>
+                      <!-- profile avatar -->
+                        <% if current_user.profile.photo.present? %>
+                          <%= cl_image_tag current_user.profile.photo.key, alt: "Profile Picture", class: "navbar-image"%>
+                        <% else %>
+                          <%= image_tag "default_avatar.png", alt: "Default Profile Picture", class: "navbar-image" %>
+                        <% end %>
+                      <% end %>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      <%= link_to "Profile", profile_path(current_user.id), class: "dropdown-item" %>
+                      <%= link_to "Edit Profile", edit_profile_path(current_user.id), class: "dropdown-item" %>
+                    </div>
+                  </div>
+                </div>
                 <!-- profile name and email -->
-              </a>
-              <p><%=current_user.first_name.capitalize%></p>
-              <p><%=current_user.email%></p>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Profile", profile_path(current_user.id), class: "dropdown-item" %>
-                <%= link_to "Edit Profile", edit_profile_path(current_user.id), class: "dropdown-item" %>
-              </div>
+                  <div class="me-auto">
+                  <div class="content-right">
+                    <div class="font-name">
+                      <%=current_user.first_name.capitalize%>
+                    </div>
+                    <div class="font-email">
+                      <%=current_user.email%>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </li>
             </li>
+          <div class="navbar-link">
             <!-- homepage -->
             <li class="nav-item">
-              <%= link_to "Home", landhome_path, class: "nav-link" %>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="icon-left">
+                  <i class="fa-solid fa-house fa-xl" style="color: #9723c9;"></i>
+                </div>
+                <div class="me-auto">
+                <div class="content-right">
+                  <%= link_to "Home", landhome_path, class: "nav-link" %>
+                </div>
+                </div>
             </li>
             <!-- dashboard -->
             <li class="nav-item">
-              <%= link_to "Dashboard", bookings_path, class: "nav-link" %>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="icon-left">
+                  <i class="fa-solid fa-table-columns fa-xl" style="color: #9723c9;"></i>
+                </div>
+                <div class="me-auto">
+                <div class="content-right">
+                  <%= link_to "Dashboard", bookings_path, class: "nav-link" %>
+                </div>
+                </div>
+              </div>
             </li>
             <!-- find events -->
             <li class="nav-item active">
-              <%= link_to "Find Events", search_events_path, class: "nav-link" %>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="icon-left">
+                  <i class="fa-solid fa-magnifying-glass-location fa-xl" style="color: #9723c9;"></i>
+                </div>
+                <div class="me-auto">
+                <div class="content-right">
+                  <%= link_to "Find Events", search_events_path, class: "nav-link" %>
+                </div>
+                </div>
+              </div>
             </li>
             <!-- create events -->
             <li class="nav-item">
-              <%= link_to "Create Events", new_event_path, class: "nav-link" %>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="icon-left">
+                  <i class="fa-regular fa-calendar-plus fa-xl" style="color: #9723c9;"></i>
+                </div>
+                <div class="me-auto">
+                <div class="content-right">
+                  <%= link_to "Create Events", new_event_path, class: "nav-link" %>
+                </div>
+                </div>
+              </div>
             </li>
-            <%# our contacts %>
+           <!-- our contacts -->
             <li class="nav-item">
-              <%= link_to "Website Creators", contacts_path, class: "nav-link" %>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="icon-left">
+                  <i class="fa-solid fa-hand-holding-hand fa-xl" style="color: #9723c9;"></i>
+                </div>
+                <div class="me-auto">
+                <div class="content-right">
+                  <%= link_to "The creators", contacts_path, class: "nav-link" %>
+                </div>
+                </div>
+              </div>
             </li>
             <!-- log out -->
             <li class="nav-item">
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %> <%# change to logout %>
+               <div class="d-flex justify-content-between align-items-center">
+                <div class="icon-left">
+                  <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #9723c9;"></i>
+                </div>
+                <div class="me-auto">
+                <div class="content-right">
+                  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %>
+                </div>
+                </div>
+              </div>
             </li>
         <!-- if user is signed out starts here -->
           <% else %>
@@ -65,6 +135,7 @@
               <%= link_to "Login", new_user_session_path, class: "nav-link" %>
             </li>
           <% end %>
+          </div>
         </ul>
       </div>
   </div>

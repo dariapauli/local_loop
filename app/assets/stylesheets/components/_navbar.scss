@@ -20,19 +20,21 @@
 }
 
 .navbar-image {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 7px;
+  border: 2px solid black;
 }
 
 .navbar-logo {
   width: 50px;
-  margin-left: 90px;
-  margin-right: 90px;
+  margin-left: 100px;
+  margin-right: 80px;
 }
 
 .navbar-toggler {
   border: none;
+  box-shadow: none;
   outline: none;
 }
 
@@ -43,6 +45,82 @@
 
 .navbar-nav{
   border: 3px solid #000000;
-  
+  border-radius: 7px;
+  padding: 5px;
+  height: 89vh;
+  box-shadow: 5px 5px;
+  background-color: #FFFBEA;
+  margin-top: 26px;
+}
 
+.nav-item {
+  justify-content: space-between;
+  padding-left: 5px;
+  background-color: #FFFFFF;
+  margin-bottom: 25px;
+  border: 3px solid black;
+  box-shadow: 4px 4px #d8fb4a;
+  width: 315px;
+  margin: 23px;
+  border-radius: 7px;
+}
+
+.nav-info.dropdown {
+  justify-content: space-between;
+  padding-left: 5px;
+}
+
+.navbar-link {
+  margin-top: 50px;
+}
+
+.avatar-container {
+  padding: 5px 5px 10px;
+  border: 2px solid #000;
+  border-radius: 7px;
+  box-shadow: 3px 3px;
+  margin-left: 25px;
+  background-color: white;
+}
+.content-right {
+  font-family: 'Poppins';
+  font-size: 22px;
+  font-weight: bold;
+  padding-left: 25px;
+}
+
+.content-right a {
+  font-family: 'Poppins';
+  font-size: 22px;
+  color:#000000;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.icon-left {
+  padding-left: 50px;
+}
+
+.font-name {
+  font-family: 'Poppins';
+  font-size: 22px;
+  font-weight: bolder;
+}
+
+.font-email {
+  font-family: 'Poppins';
+  font-size: 18px;
+  font-weight:lighter;
+}
+
+.icon-avatar {
+  position: relative;
+  display: inline-block;
+}
+
+.drop-down-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 5px;
 }
