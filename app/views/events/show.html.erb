@@ -47,7 +47,7 @@
           <% else %>
             <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "carrousel-image" %>
         <% end %>
-          <p>You</p>
+          <p class="youcreator">You</p>
         <% else %>
         <% if @profile && @profile.photo.present? %>
           <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", class: "carrousel-image") %>
@@ -66,11 +66,6 @@
     <div class="event-card">
        <p class="image-text">Description: </p>
        <%= @event.description %>
-        <% if @event.organizer == current_user %>
-          <%= link_to "Delete",
-          event_path(@event),
-          data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class: "show-delete"%>
-      <% end %>
     </div>
 
 
@@ -85,23 +80,30 @@
     <% if current_user == @organizer  %>
 
       <% if @profile && @profile.photo.present? %>
-        <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", style: "width: 50px; height: 50px;") %>
+        <%= cl_image_tag(@organizer.profile.photo.key, class:"d-none", style: "width: 50px; height: 50px;") %>
       <% else %>
         <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "navbar-image" %>
       <% end %>
-      <p>You</p>
+      <p class="d-none">You</p>
     <% else %>
 
     <% end %>
 
-    <% if @event.organizer == current_user %>
-      <%= link_to "Edit",
-        edit_event_path(@event), class: "show-edit"%>
-    <% end %>
-  <% end %>
+    <div class="edit-delete">
+      <% if @event.organizer == current_user %>
+        <i class="fa-solid fa-trash ">
+          <%= link_to "Delete",
+          event_path(@event),
+          data: {turbo_method: :delete, turbo_confirm: "Oh no! Are you sure?"}, class:"delete-event"%>
+        </i>
+        <% end %>
+      <% if @event.organizer == current_user %>
+        <i class="fa-solid fa-file-pen">
+        <%= link_to "Edit", edit_event_path(@event), class: "show-edit"%></i>
+      <% end %>
+        <% end %>
 
-
-
+    </div>
 
 
 
@@ -111,15 +113,15 @@
 <% if @participants.present? %>
   <div id="participantsCarousel" class="carousel slide" data-ride="carousel" >
     <div class="carousel-inner">
-      <% @participants.reverse.in_groups_of(12, false).each_with_index do |group, index| %>
+      <% @participants.reverse.in_groups_of(3, false).each_with_index do |group, index| %>
         <div class="carousel-item <%= 'active' if index == 0 %>">
           <div class="d-flex justify-content-around">
             <% group.each do |user|  %>
               <div class="avatar">
                 <%#  @event.users.each do |user| %>
-                <% if @profile && @profile.photo.present? %>
-                  <%= cl_image_tag @profile.photo.key, class:"d-block card-img" %>
-                  <%= link_to @profile.user.first_name, profile_path(user.profile), class:"name-card"  %>
+                <% if user.profile && user.profile.photo.present? %>
+                  <%= cl_image_tag user.profile.photo.key, class:"d-block card-img" %>
+                  <%= link_to user.first_name, profile_path(user.profile), class:"name-card"  %>
                 <% else %>
                   <%= image_tag "Default_pfp.jpg", class:"d-block carrousel-image", alt: "Default Profile Picture" %>
                 <% end %>
@@ -186,10 +188,16 @@
 <div class="comments-view">
   <ul>
     <% @comments.each do |c| %>
-    <li class="items-comments">
-      <%= cl_image_tag(@profile.photo.key, class:"d-block show-img") %>
-      <%= @profile.user.first_name %>
-      <%= c.content %></li>
+    <div class="items-comments">
+      <div class="commenter">
+        <%= cl_image_tag(c.user.profile.photo.key, class:"d-block comments-img") %>
+        <div class="comments-text">
+          <%= link_to c.user.first_name, profile_path(c.user.profile), class:"comment-name"  %>
+
+        </div>
+      </div>
+      <p><%= c.content %></p>
+    </div>
     <% end %>
   </ul>
 
