@@ -16,27 +16,53 @@
       <% end %>
     </div>
 
+    <div class="profile-names">
       <%= @profile.user.first_name %>
       <% if @profile.last_name.present? %>
         <p><%= @profile.last_name[0] %>.</p>
       <% end %>
+    </div>
 
-       <% if @profile.birthdate.present? %>
-      <% age = Time.now.year - @profile.birthdate.year - ((Time.now.month > @profile.birthdate.month || (Time.now.month == @profile.birthdate.month && Time.now.day >= @profile.birthdate.day)) ? 0 : 1) %>
-      <p>Age: <%= age %></p>
-    <% end %>
+    <div class="profile-info d-flex flex-direction-row">
+      <% if @profile.birthdate.present? %>
+        <div class="profile-age profile-text flex-grow-1 align-items-center">
+          <% age = Time.now.year - @profile.birthdate.year - ((Time.now.month > @profile.birthdate.month || (Time.now.month == @profile.birthdate.month && Time.now.day >= @profile.birthdate.day)) ? 0 : 1) %>
+          <p class="text-bold">Age: </p>
+          <p class="text-normal"> <%= age %></p>
+        </div>
+      <% end %>
+      <% if @profile.city.present? %>
+        <div class="profile-city profile-text">
+          <p class="text-normal"><i class="fa-solid fa-location-dot"></i> <%= @profile.city %></p>
+        </div>
+        <% end %>
+    </div>
+
 
     <% if @profile.bio.present? %>
-      <p>Bio: <%= @profile.bio %></p>
+      <div class="profile-text text-long">
+        <p class="text-bold">Bio</p>
+        <%= @profile.bio %>
     <% end %>
-
     <% if @profile.interests.present? %>
-      <p>Interests: <%= @profile.interests %></p>
+        <p class="text-bold">Interests</p>
+        <%= @profile.interests %>
+      </div>
     <% end %>
 
-    <% if @profile.city.present? %>
-      <p><i class="fa-solid fa-location-dot"></i> <%= @profile.city %></p>
-    <% end %>
+  <% if @events.count == 1 %>
+    <p>1 event created</p>
+  <% else %>
+    <p><%= @events.count %> events created</p>
+  <% end %>
+  <%# <div class="profile-events">
+    <% @events.each do |event| %>
+      <%# <%= cl_image_tag event.photo.key, class: "card-image", height: 70, width: 70,  crop: :fill  %>
+      <%# <p> %>
+        <%# <%= event.name %>
+      <%# </p> %>
+    <%# <% end %>
+  <%# </div> %>
 
     <% if @profile.user == @user %>
         <%= link_to "Edit your profile", edit_profile_path(@profile), class:"btn chatedit" %>
@@ -57,7 +83,7 @@
           <%= simple_form_for Chatroom.new do |f| %>
             <%= f.input :receiver_id, input_html: { class:"d-none", value: @profile.user.id } %>
             <%= f.input :sender_id, input_html: { class:"d-none", value: current_user.id } %>
-            <%= f.submit %>
+              <%= f.submit "Start chat", class: "button-green" %>
           <% end %>
         </div>
       <% end %>
