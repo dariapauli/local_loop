@@ -40,25 +40,25 @@
       </div>
 
       <div class="event-image">
-         <% if @organizer.present? %>
-        <% if current_user == @organizer  %>
-          <% if @profile && @profile.photo.present? %>
-            <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "carrousel-image") %>
+        <% if @organizer.present? %>
+          <% if current_user == @organizer  %>
+            <% if @profile.photo.present? %>
+              <%= cl_image_tag(@profile.photo.key, class:"d-block", class: "carrousel-image") %>
+            <% else %>
+              <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "carrousel-image" %>
+            <% end %>
+            <p class="youcreator">You</p>
           <% else %>
-            <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "carrousel-image" %>
+            <% if @profile.photo.present? %>
+              <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", class: "carrousel-image") %>
+              <p><%= link_to @organizer.first_name, profile_path(@organizer.profile), class:"organizer-text" %></p>
+            <%# <% else %>
+              <%# <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "organizer-img" %>
+              <%# <p><%= link_to @organizer.first_name, profile_path(@organizer.profile), class:"organizer-text"</p> %>
+            <% end %>
+            <p class="image-text">is the host </p>
+          <% end %>
         <% end %>
-          <p class="youcreator">You</p>
-        <% else %>
-        <% if @profile && @profile.photo.present? %>
-          <%= cl_image_tag(@organizer.profile.photo.key, class:"d-block", class: "carrousel-image") %>
-          <p><%= link_to @organizer.first_name, profile_path(@organizer.profile), class:"organizer-text" %></p>
-        <% else %>
-          <%= image_tag "default_avatar.png", class:"d-block", alt: "Default Profile Picture", class: "organizer-img" %>
-           <p><%= link_to @organizer.first_name, profile_path(@organizer.profile), class:"organizer-text" %></p>
-        <% end %>
-          <p class="image-text">is the host </p>
-        <% end %>
-      <% end %>
       </div>
 
     </div>
